@@ -31,3 +31,39 @@ export function TrashIcon() {
     </svg>
   );
 }
+
+/** Drag grip. Six dots is the conventional "grab here to reorder" affordance. */
+export function GripIcon() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      className="h-4 w-4 shrink-0 fill-current"
+      aria-hidden="true"
+    >
+      <circle cx="6" cy="4" r="1.4" />
+      <circle cx="10" cy="4" r="1.4" />
+      <circle cx="6" cy="8" r="1.4" />
+      <circle cx="10" cy="8" r="1.4" />
+      <circle cx="6" cy="12" r="1.4" />
+      <circle cx="10" cy="12" r="1.4" />
+    </svg>
+  );
+}
+
+/** Chevron marking a card that opens something. */
+export function ChevronIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-3.5 w-3.5 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M9 6l6 6-6 6" />
+    </svg>
+  );
+}

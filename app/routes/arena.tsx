@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router";
-import { ListIcon } from "~/components/icons";
+import { ChevronIcon, ListIcon } from "~/components/icons";
 import { InitiativeTrack } from "~/components/InitiativeTrack";
 import { getEnemy } from "~/lib/enemies";
 import { useGame } from "~/store/GameProvider";
@@ -59,6 +59,10 @@ export default function Arena() {
                   {getEnemy(member.enemyId).name}
                 </p>
               ))}
+              <span className="mt-1 inline-flex items-center gap-0.5 text-[0.7rem] text-bf-cyan">
+                Roll behaviour
+                <ChevronIcon />
+              </span>
             </button>
           </div>
         ))}

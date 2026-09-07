@@ -3,3 +3,9 @@ build/
 .react-router/
 .DS_Store
 *.local
+
+# Playwright
+playwright-report/
+test-results/
+blob-report/
+.playwright/
