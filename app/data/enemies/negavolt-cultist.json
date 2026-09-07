@@ -11,11 +11,11 @@
         },
         {
           "From": 4,
-          "To": 9,
+          "To": 6,
           "ActionTaken": "Hold"
         },
         {
-          "From": 10,
+          "From": 7,
           "To": 19,
           "ActionTaken": "Charge"
         },      
@@ -55,12 +55,12 @@
           "ActionTaken": "Recharge"
         },
         {
-          "From": 1,
-          "To": 9,
+          "From": 4,
+          "To": 19,
           "ActionTaken": "Charge"
         },
         {
-          "From": 10,
+          "From": 20,
           "To": 20,
           "ActionTaken": "Rush"
         }

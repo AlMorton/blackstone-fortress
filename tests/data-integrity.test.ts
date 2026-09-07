@@ -6,13 +6,11 @@ import { enemies } from "../app/lib/enemies";
 const D20 = Array.from({ length: 20 }, (_, i) => i + 1);
 
 /**
- * Pre-existing defects inherited from the Blazor app's game data. They are allow-listed
- * so the suite stays green and NEW breakage still fails, but each one is a real gap a
- * player can hit. Delete an entry once the underlying data is fixed — the tests below
- * assert the list has not gone stale.
+ * Actions an enemy can roll that have no rules text, so the panel renders empty. A
+ * pre-existing gap in the game data, allow-listed so the suite stays green while NEW
+ * breakage still fails. Delete an entry once its description is added — the test below
+ * asserts the list has not gone stale.
  */
-
-/** Actions an enemy can roll that have no rules text, so the panel renders empty. */
 const ACTIONS_WITHOUT_DESCRIPTIONS = [
   "All Shall Burn",
   "Consume",
@@ -23,15 +21,6 @@ const ACTIONS_WITHOUT_DESCRIPTIONS = [
   "Tunnel",
 ];
 
-/**
- * negavolt-cultist "Other" declares Recharge as 1-3 and Charge as 1-9. First match
- * wins, so rolls 1-3 resolve to Recharge; Charge's band is most likely meant to be 4-9.
- */
-const OVERLAPPING_BANDS = [
-  "negavolt-cultist / Other / roll 1: Recharge vs Charge",
-  "negavolt-cultist / Other / roll 2: Recharge vs Charge",
-  "negavolt-cultist / Other / roll 3: Recharge vs Charge",
-];
 
 describe("enemy data", () => {
   it("loads every JSON file in app/data/enemies", () => {
@@ -98,12 +87,7 @@ describe("enemy data", () => {
       }
     }
 
-    const unexpected = overlaps.filter((entry) => !OVERLAPPING_BANDS.includes(entry));
-    expect(unexpected, `new overlapping bands:\n${unexpected.join("\n")}`).toEqual([]);
-
-    const fixed = OVERLAPPING_BANDS.filter((entry) => !overlaps.includes(entry));
-    expect(fixed, `fixed in the data — drop from OVERLAPPING_BANDS:\n${fixed.join("\n")}`)
-      .toEqual([]);
+    expect(overlaps, `overlapping bands:\n${overlaps.join("\n")}`).toEqual([]);
   });
 });
 
