@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { ListIcon } from "~/components/icons";
-import { EnemyGroupDialog } from "~/components/EnemyGroupDialog";
 import { InitiativeTrack } from "~/components/InitiativeTrack";
 import { getEnemy } from "~/lib/enemies";
 import { useGame } from "~/store/GameProvider";
@@ -12,7 +10,7 @@ export function meta() {
 
 export default function Arena() {
   const { state } = useGame();
-  const [openGroup, setOpenGroup] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   const populated = Object.values(state.groups).filter(
     (group) => group.members.length > 0,
@@ -20,7 +18,9 @@ export default function Arena() {
 
   return (
     <div className="w-full">
-      <InitiativeTrack onOpenGroup={setOpenGroup} />
+      <InitiativeTrack
+        onOpenGroup={(group) => navigate(`/enemygroup/${group}`)}
+      />
 
       <div className="mb-2 flex justify-end">
         <Link
@@ -50,7 +50,7 @@ export default function Arena() {
           >
             <button
               type="button"
-              onClick={() => setOpenGroup(group.number)}
+              onClick={() => navigate(`/enemygroup/${group.number}`)}
               className="bf-gradient-enemy m-1.5 flex-1 cursor-pointer rounded-[10px] p-1.5 text-left"
             >
               <span className="text-base text-white">{group.name}</span>
@@ -63,8 +63,6 @@ export default function Arena() {
           </div>
         ))}
       </div>
-
-      <EnemyGroupDialog group={openGroup} onClose={() => setOpenGroup(null)} />
     </div>
   );
 }

@@ -21,7 +21,7 @@ export function EnemyChooser({ group }: { group: number }) {
               className={`min-w-10 rounded px-3 py-1.5 text-sm text-white transition ${
                 count > 0
                   ? "bf-gradient-enemy border border-[#dc3545]"
-                  : "bg-black/35 hover:bg-black/50"
+                  : "border border-white/15 bg-[#0e2739]/85 hover:bg-[#16405c]/90"
               }`}
             >
               {enemy.name}
@@ -36,7 +36,7 @@ export function EnemyChooser({ group }: { group: number }) {
                   if (last) removeInstance(group, last.instanceId);
                 }}
                 aria-label={`Remove one ${enemy.name}`}
-                className="ml-0.5 rounded bg-black/40 px-2 py-1.5 text-sm text-white hover:bg-black/60"
+                className="ml-0.5 rounded border border-white/15 bg-[#0e2739]/85 px-2 py-1.5 text-sm text-white hover:bg-[#16405c]/90"
               >
                 −
               </button>

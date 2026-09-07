@@ -1,23 +1,8 @@
 import { useEffect, useId, useRef, type ReactNode } from "react";
 
-const WIDTHS = {
-  md: "w-[min(42rem,92vw)]",
-  lg: "w-[min(72rem,95vw)]",
-} as const;
-
 /**
- * "bright" is the original Blazor modal gradient, which reads well behind opaque
- * buttons. Enemy cards are semi-transparent, so it bleeds through and washes them
- * out — those get "dark", which keeps them looking as they do on the page.
- */
-const SURFACES = {
-  bright: "bf-gradient-modal",
-  dark: "bg-[#070d18]/95 border border-white/15",
-} as const;
-
-/**
- * Shared shell for the arena's popups. Built on <dialog> so the browser handles focus
- * trapping, Escape-to-close and inertness of the page behind — the Blazor modal
+ * Shared shell for the arena's picker popups. Built on <dialog> so the browser handles
+ * focus trapping, Escape-to-close and inertness of the page behind — the Blazor modal
  * hardcoded aria-hidden="true" and was invisible to screen readers.
  *
  * Children supply their own layout; the shell only owns the chrome.
@@ -26,18 +11,12 @@ export function PickerDialog({
   open,
   title,
   hint,
-  size = "md",
-  surface = "bright",
-  closeLabel = "OK",
   onClose,
   children,
 }: {
   open: boolean;
   title: string;
   hint?: string;
-  size?: keyof typeof WIDTHS;
-  surface?: keyof typeof SURFACES;
-  closeLabel?: string;
   onClose: () => void;
   children: ReactNode;
 }) {
@@ -61,9 +40,9 @@ export function PickerDialog({
         if (event.target === dialogRef.current) onClose();
       }}
       aria-labelledby={titleId}
-      className={`m-auto ${WIDTHS[size]} rounded bg-transparent p-0 backdrop:bg-black/60`}
+      className="m-auto w-[min(42rem,92vw)] rounded bg-transparent p-0 backdrop:bg-black/60"
     >
-      <div className={`${SURFACES[surface]} rounded text-bf-card`}>
+      <div className="bf-gradient-modal rounded text-bf-card">
         <header className="border-b border-white/20 px-4 py-3">
           <h2 id={titleId} className="text-lg text-white">
             {title}
@@ -81,7 +60,7 @@ export function PickerDialog({
             onClick={onClose}
             className="rounded bg-bf-btn px-5 py-2 text-white hover:brightness-125"
           >
-            {closeLabel}
+            OK
           </button>
         </footer>
       </div>

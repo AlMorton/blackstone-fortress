@@ -42,7 +42,7 @@ export function EnemyGroupPicker({ open, onClose }: { open: boolean; onClose: ()
                     ? "bf-gradient-selected text-white ring-2 ring-bf-cyan"
                     : count > 0
                       ? "bf-gradient-enemy text-white"
-                      : "bg-black/35 text-white/70 hover:bg-black/50 hover:text-white"
+                      : "border border-white/15 bg-[#0e2739]/85 text-white/80 hover:bg-[#16405c]/90 hover:text-white"
                 }`}
               >
                 {group}
