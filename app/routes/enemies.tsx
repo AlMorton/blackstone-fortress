@@ -1,12 +1,43 @@
+import { useState } from "react";
 import { Link } from "react-router";
-import { enemies } from "~/lib/enemies";
+import { BehaviourCard } from "~/components/BehaviourCard";
+import { ChevronIcon } from "~/components/icons";
+import { PickerDialog } from "~/components/PickerDialog";
+import { resolveAction } from "~/lib/behaviour";
+import { rollD20 } from "~/lib/dice";
+import { enemies, getEnemy } from "~/lib/enemies";
 
 export function meta() {
   return [{ title: "Enemies | Blackstone Fortress" }];
 }
 
-/** Reference list of every hostile and its full behaviour chart. */
+interface Result {
+  roll: number;
+  status: string;
+  columnStatus: string;
+}
+
+/** Every hostile as a row; picking one opens its rollable behaviour card. */
 export default function Enemies() {
+  const [openId, setOpenId] = useState<string | null>(null);
+  const [result, setResult] = useState<Result | null>(null);
+
+  const enemy = openId ? getEnemy(openId) : null;
+
+  function open(id: string) {
+    setOpenId(id);
+    // A look-up roll is throwaway, so each hostile opens with a clean card.
+    setResult(null);
+  }
+
+  function roll(columnStatus: string) {
+    if (!enemy) return;
+    const column = enemy.columns.find((c) => c.status === columnStatus);
+    if (!column) return;
+    const value = rollD20();
+    setResult({ roll: value, status: resolveAction(column, value), columnStatus });
+  }
+
   return (
     <div className="w-full">
       <div className="mb-3 flex flex-wrap items-baseline gap-4">
@@ -19,39 +50,53 @@ export default function Enemies() {
         </Link>
       </div>
 
-      <div className="flex flex-row flex-wrap">
-        {enemies.map((enemy) => (
-          <article
-            key={enemy.id}
-            className="bf-gradient-blue m-0.5 w-full rounded p-4 text-bf-card md:w-[calc(50%-0.25rem)]"
-          >
-            <h2 className="text-xl md:text-2xl">{enemy.name}</h2>
+      <p className="mb-3 text-sm opacity-80">
+        Pick a hostile to roll its behaviour chart without adding it to a group.
+      </p>
 
-            <div className="mt-3 grid gap-3">
-              {enemy.columns.map((column) => (
-                <div key={column.status}>
-                  <h3 className="text-bf-cyan">{column.status}</h3>
-                  <ul className="mt-1 text-sm">
-                    {column.actions.map((range) => (
-                      <li
-                        key={`${range.from}-${range.to}`}
-                        className="flex gap-3"
-                      >
-                        <span className="w-14 shrink-0 tabular-nums opacity-70">
-                          {range.from === range.to
-                            ? range.from
-                            : `${range.from}-${range.to}`}
-                        </span>
-                        <span>{range.actionTaken}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </article>
+      <ul className="max-w-2xl overflow-hidden rounded-[10px] border border-white/15">
+        {enemies.map((item, index) => (
+          <li key={item.id}>
+            <button
+              type="button"
+              onClick={() => open(item.id)}
+              className={`flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left transition hover:bg-white/10 focus-visible:bg-white/10 focus-visible:outline-none ${
+                index > 0 ? "border-t border-white/10" : ""
+              }`}
+            >
+              <span className="flex-1 text-white">{item.name}</span>
+              <span className="text-xs text-white/50">
+                {item.columns.length} situations
+              </span>
+              <span className="text-bf-cyan">
+                <ChevronIcon />
+              </span>
+            </button>
+          </li>
         ))}
-      </div>
+      </ul>
+
+      <PickerDialog
+        open={enemy !== null}
+        title={enemy?.name ?? ""}
+        hint="Pick the situation this hostile is in to roll its behaviour chart."
+        surface="dark"
+        // Not "Close" — that collides with the Close situation button on the card.
+        closeLabel="Done"
+        onClose={() => setOpenId(null)}
+      >
+        {enemy && (
+          <BehaviourCard
+            enemy={enemy}
+            roll={result?.roll}
+            status={result?.status}
+            columnStatus={result?.columnStatus}
+            onRoll={roll}
+            showName={false}
+            className="w-full"
+          />
+        )}
+      </PickerDialog>
     </div>
   );
 }
