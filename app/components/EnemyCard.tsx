@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { describeAction } from "~/lib/actions";
 import { getEnemy } from "~/lib/enemies";
+import { TrashIcon } from "./icons";
 import { useGame } from "~/store/GameProvider";
 import type { EnemyInstance } from "~/types";
 
@@ -31,10 +32,11 @@ export function EnemyCard({
           <button
             type="button"
             onClick={() => removeInstance(group, member.instanceId)}
-            aria-label={`Remove ${enemy.name}`}
-            className="absolute top-2.5 right-2.5 text-white/60 hover:text-white"
+            aria-label={`Remove ${enemy.name} from this group`}
+            title={`Remove ${enemy.name} from this group`}
+            className="absolute top-2 right-2 rounded p-1 text-white/60 transition hover:bg-black/30 hover:text-white"
           >
-            ✕
+            <TrashIcon />
           </button>
         )}
 
@@ -46,7 +48,9 @@ export function EnemyCard({
               onClick={() => rollFor(group, member.instanceId, column.status)}
               aria-pressed={member.columnStatus === column.status}
               className={`rounded bg-bf-btn px-3 py-1.5 text-sm text-white transition hover:brightness-125 ${
-                member.columnStatus === column.status ? "ring-1 ring-bf-cyan" : ""
+                member.columnStatus === column.status
+                  ? "ring-1 ring-bf-cyan"
+                  : ""
               }`}
             >
               {column.status}
@@ -58,7 +62,9 @@ export function EnemyCard({
           <h4 className="text-base md:text-lg" aria-live="polite">
             Dice roll: {member.roll ?? 0}
           </h4>
-          <h4 className="text-base text-bf-cyan md:text-lg">{member.status ?? ""}</h4>
+          <h4 className="text-base text-bf-cyan md:text-lg">
+            {member.status ?? ""}
+          </h4>
         </div>
 
         {member.status && (
@@ -70,7 +76,11 @@ export function EnemyCard({
               collapsed ? "h-12 overflow-hidden" : "h-auto"
             }`}
           >
-            <p>{description || <span className="italic opacity-70">No rules text found.</span>}</p>
+            <p>
+              {description || (
+                <span className="italic opacity-70">No rules text found.</span>
+              )}
+            </p>
           </button>
         )}
       </div>
