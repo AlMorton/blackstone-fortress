@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { ACTION_GROUP, actionDescriptions, describeAction } from "../app/lib/actions";
+import rawGroups from "../app/data/enemy-actions.json";
 import { CONFUSION, resolveAction } from "../app/lib/behaviour";
 import { enemies } from "../app/lib/enemies";
 
@@ -134,13 +135,37 @@ describe("per-enemy action rules", () => {
     expect(describeAction(undefined, "ambull")).toBe("");
   });
 
-  it("maps every enemy file to an action group that exists", () => {
-    const groups = new Set(
-      [...actionDescriptions.keys()].length ? Object.values(ACTION_GROUP) : [],
-    );
+  it("maps every enemy to action groups that exist in the data", () => {
+    const declared = new Set(rawGroups.map((g) => g.Enemy));
     for (const enemy of enemies) {
-      expect(ACTION_GROUP[enemy.id], `${enemy.id} has no action group mapping`).toBeDefined();
+      const chain = ACTION_GROUP[enemy.id];
+      expect(chain, `${enemy.id} has no action group mapping`).toBeDefined();
+      for (const group of chain!) {
+        expect(declared.has(group), `${enemy.id} points at missing group "${group}"`).toBe(true);
+      }
     }
-    expect(groups.size).toBeGreaterThan(0);
+  });
+
+  it("lets a variant override only what its card rewords", () => {
+    // The empowered Obsidius names itself in Overcharge but keeps Fury and Rush.
+    expect(describeAction("Overcharge", "obsidius-mallex-empowered")).toContain(
+      "Obsidius Mallex Empowered",
+    );
+    expect(describeAction("Overcharge", "obsidius-mallex")).not.toContain("Empowered");
+
+    for (const action of ["Fury", "Rush"]) {
+      expect(describeAction(action, "obsidius-mallex-empowered")).toBe(
+        describeAction(action, "obsidius-mallex"),
+      );
+      expect(describeAction(action, "obsidius-mallex-empowered")).not.toBe("");
+    }
+  });
+
+  it("declares no action group that nothing points at", () => {
+    const used = new Set(Object.values(ACTION_GROUP).flat());
+    const orphans = rawGroups
+      .map((g) => g.Enemy)
+      .filter((g) => g !== "All" && !used.has(g));
+    expect(orphans, `unused action groups:\n${orphans.join("\n")}`).toEqual([]);
   });
 });

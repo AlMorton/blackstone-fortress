@@ -199,5 +199,14 @@
         "Description": "Make a {d6} attack roll against each explorer and hostile within two hexes of and visible to the Cultist Firebrand."
       }
     ]
+  },
+  {
+    "Enemy": "ObsidiusMallexEmpowered",
+    "Actions": [
+      {
+        "Name": "Overcharge",
+        "Description": "Make an overcharged Plasma Pistol attack against the closest explorer that is in range of and visible to Obsidius Mallex Empowered."
+      }
+    ]
   }
 ]
