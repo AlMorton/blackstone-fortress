@@ -18,7 +18,6 @@ export function BehaviourCard({
   columnStatus,
   onRoll,
   onRemove,
-  showName = true,
   className = "",
 }: {
   enemy: Enemy;
@@ -27,8 +26,6 @@ export function BehaviourCard({
   columnStatus?: string;
   onRoll: (columnStatus: string) => void;
   onRemove?: () => void;
-  /** Off where a surrounding dialog already shows the name, to avoid repeating it. */
-  showName?: boolean;
   className?: string;
 }) {
   const [collapsed, setCollapsed] = useState(false);
@@ -37,11 +34,9 @@ export function BehaviourCard({
   return (
     <article className={`bf-gradient-blue relative rounded text-bf-card ${className}`}>
       <div className="p-4">
-        {showName && (
-          <h2 className={`text-xl md:text-2xl ${onRemove ? "pr-8" : ""}`}>
-            {enemy.name}
-          </h2>
-        )}
+        <h2 className={`text-xl md:text-2xl ${onRemove ? "pr-8" : ""}`}>
+          {enemy.name}
+        </h2>
 
         {onRemove && (
           <button
