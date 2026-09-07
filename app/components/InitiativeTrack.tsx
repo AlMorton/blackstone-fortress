@@ -1,14 +1,14 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
-import { ADVENTURERS } from "~/lib/adventurers";
 import { getEnemy } from "~/lib/enemies";
 import { useGame } from "~/store/GameProvider";
 import type { InitiativeItem } from "~/types";
-import { ExpandPanel } from "./ExpandPanel";
+import { AdventurerPicker } from "./AdventurerPicker";
 
 export function InitiativeTrack() {
-  const { state, dispatch, toggleAdventurer, isOnTrack } = useGame();
+  const { state, dispatch } = useGame();
   const navigate = useNavigate();
+  const [pickerOpen, setPickerOpen] = useState(false);
 
   // Index of the card currently being dragged, for both pointer and mouse drag.
   const [dragIndex, setDragIndex] = useState<number | null>(null);
@@ -38,36 +38,27 @@ export function InitiativeTrack() {
 
   return (
     <>
-      <ExpandPanel label="Select Players">
-        {ADVENTURERS.map((name) => {
-          const selected = isOnTrack(name);
-          return (
-            <button
-              key={name}
-              type="button"
-              onClick={() => toggleAdventurer(name)}
-              aria-pressed={selected}
-              className={`min-w-10 rounded px-3 py-1.5 text-sm transition-colors ${
-                selected
-                  ? "bf-gradient-selected rounded-[50px] text-white"
-                  : "bf-gradient-blue text-[#adb5bd] hover:text-white"
-              }`}
-            >
-              {name}
-            </button>
-          );
-        })}
-      </ExpandPanel>
-
-      {state.initiative.length > 0 && (
+      <div className="mb-2 flex flex-wrap items-center gap-2">
         <button
           type="button"
-          onClick={() => dispatch({ type: "shuffleTrack" })}
-          className="bf-gradient-blue my-1.5 rounded px-4 py-2 text-white"
+          onClick={() => setPickerOpen(true)}
+          className="bf-gradient-panel rounded-[10px] px-5 py-2.5 text-white transition hover:brightness-125"
         >
-          Shuffle
+          Add Player
         </button>
-      )}
+
+        {state.initiative.length > 0 && (
+          <button
+            type="button"
+            onClick={() => dispatch({ type: "shuffleTrack" })}
+            className="bf-gradient-blue rounded-[10px] px-5 py-2.5 text-white transition hover:brightness-125"
+          >
+            Shuffle
+          </button>
+        )}
+      </div>
+
+      <AdventurerPicker open={pickerOpen} onClose={() => setPickerOpen(false)} />
 
       <div
         ref={trackRef}
