@@ -52,7 +52,8 @@ export function InitiativeTrack() {
         <button
           type="button"
           onClick={() => setGroupPickerOpen(true)}
-          className="bf-gradient-panel rounded-[10px] px-5 py-2.5 text-white transition hover:brightness-125"
+          // Matches the enemy group cards on the track: pink gradient, pink edge.
+          className="bf-gradient-enemy rounded-[10px] border border-bf-pink-edge px-5 py-2.5 text-white transition hover:brightness-125"
         >
           Add Enemy Group
         </button>
