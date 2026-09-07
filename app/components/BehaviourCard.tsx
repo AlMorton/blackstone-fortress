@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { describeAction } from "~/lib/actions";
 import type { Enemy } from "~/types";
+import { RulesText } from "./RulesText";
 import { TrashIcon } from "./icons";
 
 /**
@@ -83,7 +84,9 @@ export function BehaviourCard({
             }`}
           >
             <p>
-              {description || (
+              {description ? (
+                <RulesText text={description} />
+              ) : (
                 <span className="italic opacity-70">No rules text found.</span>
               )}
             </p>

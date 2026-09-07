@@ -16,6 +16,8 @@
   --color-bf-pink-edge: #ff0986ba;
   --color-bf-panel: #01023e7d;
   --color-bf-btn: #475e9ca8;
+  /* Blank d6 glyph used inline in card rules text. */
+  --color-bf-die: #9ca3af;
 
   --gradient-bf-blue: linear-gradient(to right, #0e2739ab, #00dcff59);
   --gradient-bf-enemy: linear-gradient(to right, #0e2739ab, #ff006a59);

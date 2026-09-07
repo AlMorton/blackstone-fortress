@@ -185,6 +185,10 @@
       {
         "Name": "Firestorm",
         "Description": "Place a firestorm marker beside the Cultist Firebrand. While a firestorm marker is beside this Cultist Firebrand, each time an explorer moves into a hex that is within 2 hexes of them, the Cultist Firebrand makes a Hellfire Torch attack against that explorer. After that attack is resolved, that explorer can continue to move. Remove the firestorm marker the next time the Cultist Firebrand is activated."
+      },
+      {
+        "Name": "All Shall Burn",
+        "Description": "Make a {d6} attack roll against each explorer and hostile within two hexes of and visible to the Cultist Firebrand."
       }
     ]
   }

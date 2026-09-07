@@ -67,3 +67,30 @@ export function ChevronIcon() {
     </svg>
   );
 }
+
+/**
+ * A blank d6, matching the die glyph printed inline in some cards' rules text.
+ * Deliberately pipless: the card uses it to name a die type, not a rolled value.
+ */
+export function DieIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      role="img"
+      aria-label="d6"
+      className="inline-block h-[1.05em] w-[1.05em] align-[-0.17em]"
+    >
+      <rect
+        x="2.5"
+        y="2.5"
+        width="19"
+        height="19"
+        rx="3.5"
+        className="fill-bf-die"
+        stroke="currentColor"
+        strokeOpacity="0.35"
+        strokeWidth="1"
+      />
+    </svg>
+  );
+}
