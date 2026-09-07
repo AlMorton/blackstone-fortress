@@ -4,11 +4,13 @@ import { getEnemy } from "~/lib/enemies";
 import { useGame } from "~/store/GameProvider";
 import type { InitiativeItem } from "~/types";
 import { AdventurerPicker } from "./AdventurerPicker";
+import { EnemyGroupPicker } from "./EnemyGroupPicker";
 
 export function InitiativeTrack() {
   const { state, dispatch } = useGame();
   const navigate = useNavigate();
-  const [pickerOpen, setPickerOpen] = useState(false);
+  const [playerPickerOpen, setPlayerPickerOpen] = useState(false);
+  const [groupPickerOpen, setGroupPickerOpen] = useState(false);
 
   // Index of the card currently being dragged, for both pointer and mouse drag.
   const [dragIndex, setDragIndex] = useState<number | null>(null);
@@ -41,10 +43,18 @@ export function InitiativeTrack() {
       <div className="mb-2 flex flex-wrap items-center gap-2">
         <button
           type="button"
-          onClick={() => setPickerOpen(true)}
+          onClick={() => setPlayerPickerOpen(true)}
           className="bf-gradient-panel rounded-[10px] px-5 py-2.5 text-white transition hover:brightness-125"
         >
           Add Player
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setGroupPickerOpen(true)}
+          className="bf-gradient-panel rounded-[10px] px-5 py-2.5 text-white transition hover:brightness-125"
+        >
+          Add Enemy Group
         </button>
 
         {state.initiative.length > 0 && (
@@ -58,7 +68,14 @@ export function InitiativeTrack() {
         )}
       </div>
 
-      <AdventurerPicker open={pickerOpen} onClose={() => setPickerOpen(false)} />
+      <AdventurerPicker
+        open={playerPickerOpen}
+        onClose={() => setPlayerPickerOpen(false)}
+      />
+      <EnemyGroupPicker
+        open={groupPickerOpen}
+        onClose={() => setGroupPickerOpen(false)}
+      />
 
       <div
         ref={trackRef}
@@ -73,12 +90,16 @@ export function InitiativeTrack() {
             item={item}
             index={index}
             isDragging={dragIndex === index}
-            isOver={overIndex === index && dragIndex !== null && dragIndex !== index}
+            isOver={
+              overIndex === index && dragIndex !== null && dragIndex !== index
+            }
             onGrab={() => setDragIndex(index)}
             onDragOver={() => setOverIndex(index)}
             onDrop={() => commitMove(index)}
             onOpen={() =>
-              item.kind === "group" ? navigate(`/enemygroup/${item.group}`) : undefined
+              item.kind === "group"
+                ? navigate(`/enemygroup/${item.group}`)
+                : undefined
             }
           />
         ))}
@@ -141,7 +162,9 @@ function TrackCard({
         }}
         onClick={onOpen}
         className={`m-1.5 flex-1 touch-none rounded-[10px] p-1.5 ${
-          isEnemy ? "bf-gradient-enemy cursor-pointer" : "bf-gradient-blue cursor-grab"
+          isEnemy
+            ? "bf-gradient-enemy cursor-pointer"
+            : "bf-gradient-blue cursor-grab"
         } ${isDragging ? "cursor-grabbing bg-[#449498] bg-none" : ""}`}
       >
         <h4 className="text-base text-white">

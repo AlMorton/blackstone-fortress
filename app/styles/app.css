@@ -62,24 +62,3 @@
   background-size: cover;
   background-repeat: repeat-y;
 }
-
-/*
- * The expand/collapse panels animate height. Tailwind can't express keyframes inline,
- * and the original used a fixed 40px; interpolate-size lets us animate to auto instead
- * so panels of any height work.
- */
-@utility bf-collapsible {
-  interpolate-size: allow-keywords;
-  display: grid;
-  grid-template-rows: 1fr;
-  transition: grid-template-rows 200ms ease-out;
-
-  & > * {
-    overflow: hidden;
-    min-height: 0;
-  }
-
-  &[data-collapsed="true"] {
-    grid-template-rows: 0fr;
-  }
-}

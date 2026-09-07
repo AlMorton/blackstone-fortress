@@ -7,14 +7,17 @@ import {
   ScrollRestoration,
   useRouteError,
 } from "react-router";
-import { Sidebar } from "~/components/Sidebar";
 import { GameProvider } from "~/store/GameProvider";
 import "~/styles/app.css";
 
 export function links() {
   return [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
-    { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+    {
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossOrigin: "anonymous",
+    },
     {
       rel: "stylesheet",
       href: "https://fonts.googleapis.com/css2?family=Audiowide&display=swap",
@@ -27,7 +30,8 @@ export function meta() {
     { title: "Blackstone Fortress" },
     {
       name: "description",
-      content: "Hostile behaviour tracker for Warhammer Quest: Blackstone Fortress.",
+      content:
+        "Hostile behaviour tracker for Warhammer Quest: Blackstone Fortress.",
     },
   ];
 }
@@ -53,14 +57,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <GameProvider>
-      <div className="flex min-h-screen flex-col md:flex-row">
-        <Sidebar />
-        <main className="bf-backdrop min-w-0 flex-1">
-          <div className="px-4 pt-4 pb-8">
-            <Outlet />
-          </div>
-        </main>
-      </div>
+      <main className="bf-backdrop min-h-screen">
+        <div className="mx-auto max-w-[1400px] px-4 pt-4 pb-10">
+          <Outlet />
+        </div>
+      </main>
     </GameProvider>
   );
 }

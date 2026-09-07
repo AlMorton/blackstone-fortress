@@ -1,10 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import { EnemyPickerModal } from "~/components/EnemyPickerModal";
-import { ExpandPanel } from "~/components/ExpandPanel";
+import { Link, useNavigate } from "react-router";
+import { ListIcon } from "~/components/icons";
 import { InitiativeTrack } from "~/components/InitiativeTrack";
 import { getEnemy } from "~/lib/enemies";
-import { GROUP_COUNT } from "~/store/gameState";
 import { useGame } from "~/store/GameProvider";
 
 export function meta() {
@@ -14,26 +11,24 @@ export function meta() {
 export default function Arena() {
   const { state } = useGame();
   const navigate = useNavigate();
-  const [pickerGroup, setPickerGroup] = useState<number | null>(null);
 
-  const populated = Object.values(state.groups).filter((group) => group.members.length > 0);
+  const populated = Object.values(state.groups).filter(
+    (group) => group.members.length > 0,
+  );
 
   return (
     <div className="w-full">
       <InitiativeTrack />
 
-      <ExpandPanel label="Select Enemy Groups">
-        {Array.from({ length: GROUP_COUNT }, (_, i) => i + 1).map((group) => (
-          <button
-            key={group}
-            type="button"
-            onClick={() => setPickerGroup(group)}
-            className="min-w-10 rounded bg-bf-btn px-3 py-1.5 text-white transition hover:brightness-125"
-          >
-            {group}
-          </button>
-        ))}
-      </ExpandPanel>
+      <div className="mb-2 flex justify-end">
+        <Link
+          to="/enemies"
+          className="inline-flex items-center gap-1.5 text-sm text-white/70 underline decoration-white/30 transition hover:text-white hover:decoration-white"
+        >
+          <ListIcon />
+          Behaviour chart reference
+        </Link>
+      </div>
 
       <h2 className="bf-gradient-panel mt-2 flex h-10 items-center justify-center rounded-[10px] text-white">
         Enemy Groups
@@ -41,7 +36,9 @@ export default function Arena() {
 
       <div className="mt-2 flex flex-row flex-wrap">
         {populated.length === 0 && (
-          <p className="p-2 opacity-70">No groups yet — pick a number above to add hostiles.</p>
+          <p className="p-2 opacity-70">
+            No groups yet — use Add Enemy Group to place hostiles.
+          </p>
         )}
 
         {populated.map((group) => (
@@ -64,8 +61,6 @@ export default function Arena() {
           </div>
         ))}
       </div>
-
-      <EnemyPickerModal group={pickerGroup} onClose={() => setPickerGroup(null)} />
     </div>
   );
 }
