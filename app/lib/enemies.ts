@@ -52,6 +52,10 @@ export const enemies: Enemy[] = Object.entries(modules)
 
 const byId = new Map(enemies.map((enemy) => [enemy.id, enemy]));
 
+export function hasEnemy(id: string): boolean {
+  return byId.has(id);
+}
+
 export function getEnemy(id: string): Enemy {
   const enemy = byId.get(id);
   if (!enemy) throw new Error(`Unknown enemy id: ${id}`);

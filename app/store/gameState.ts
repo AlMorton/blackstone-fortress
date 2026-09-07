@@ -14,6 +14,8 @@ export function createInitialState(): GameState {
 }
 
 export type GameAction =
+  | { type: "hydrate"; state: GameState }
+  | { type: "reset" }
   | { type: "toggleAdventurer"; name: string }
   | { type: "addEnemy"; group: number; enemyId: string }
   | { type: "removeInstance"; group: number; instanceId: string }
@@ -23,6 +25,12 @@ export type GameAction =
 
 export function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
+    case "hydrate":
+      return action.state;
+
+    case "reset":
+      return createInitialState();
+
     case "toggleAdventurer": {
       const exists = state.initiative.some(
         (item) => item.kind === "adventurer" && item.id === action.name,
@@ -99,7 +107,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
  * A group belongs on the initiative track exactly while it has members. New groups are
  * appended; emptied groups drop out. Existing track order is otherwise preserved.
  */
-function syncTrack(state: GameState): GameState {
+export function syncTrack(state: GameState): GameState {
   const shouldBeOnTrack = (n: number) => state.groups[n]!.members.length > 0;
 
   const kept = state.initiative.filter(

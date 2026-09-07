@@ -10,7 +10,7 @@ export function InitiativeTrack({
 }: {
   onOpenGroup: (group: number) => void;
 }) {
-  const { state, dispatch } = useGame();
+  const { state, dispatch, reset } = useGame();
   const [playerPickerOpen, setPlayerPickerOpen] = useState(false);
   const [groupPickerOpen, setGroupPickerOpen] = useState(false);
 
@@ -67,6 +67,17 @@ export function InitiativeTrack({
             className="bf-gradient-blue rounded-[10px] px-5 py-2.5 text-white transition hover:brightness-125"
           >
             Shuffle
+          </button>
+        )}
+
+        {state.initiative.length > 0 && (
+          <button
+            type="button"
+            onClick={reset}
+            title="Remove every explorer and hostile"
+            className="ml-auto rounded-[10px] border border-white/20 px-4 py-2.5 text-sm text-white/70 transition hover:border-white/40 hover:text-white"
+          >
+            Clear arena
           </button>
         )}
       </div>
