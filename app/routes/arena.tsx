@@ -46,7 +46,7 @@ export default function Arena() {
         {populated.map((group) => (
           <div
             key={group.number}
-            className="m-1.5 flex min-h-[70px] max-w-[150px] flex-1 basis-[150px] rounded-[10px] border border-bf-pink-edge"
+            className="m-1.5 flex min-h-[70px] max-w-[160px] flex-1 basis-[160px] rounded-[10px] border border-bf-pink-edge"
           >
             <button
               type="button"

@@ -167,17 +167,26 @@ function TrackCard({
       ref={setNodeRef}
       data-track-item={id}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={`m-1.5 flex min-h-[70px] max-w-[150px] flex-1 basis-[150px] rounded-[10px] border ${
+      className={`m-1.5 flex min-h-[70px] max-w-[160px] flex-1 basis-[160px] rounded-[10px] border ${
         isEnemy ? "border-bf-pink-edge" : "border-bf-green"
       } ${isDragging ? "z-10 opacity-90 ring-2 ring-bf-cyan" : ""}`}
     >
       <div
-        className={`m-1.5 flex flex-1 flex-col rounded-[10px] ${
+        className={`m-1.5 flex min-w-0 flex-1 flex-col rounded-[10px] ${
           isEnemy ? "bf-gradient-enemy" : "bf-gradient-blue"
         } ${isDragging ? "bg-[#449498] bg-none" : ""}`}
       >
         <div className="flex items-start gap-1 p-1.5 pb-0">
-          <h4 className="flex-1 text-base text-white">{label}</h4>
+          {/*
+            Two things are needed here. min-w-0 overrides a flex item's default
+            min-width: auto, and wrap-anywhere (overflow-wrap: anywhere) is what
+            actually shrinks the intrinsic min-content width — break-word alone
+            permits a break without reducing min-content, so "Shadowguide" still
+            forced the row wider than the card and shoved the grip outside it.
+          */}
+          <h4 className="min-w-0 flex-1 text-sm leading-tight wrap-anywhere text-white">
+            {label}
+          </h4>
 
           {/*
             The only drag activator. touch-action: none belongs here rather than on the
