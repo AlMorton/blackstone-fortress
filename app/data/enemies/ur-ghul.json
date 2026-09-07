@@ -1,0 +1,85 @@
+{
+  "Name": "Ur-Ghul",
+  "BehaviourChartColumns": [
+    {
+      "Status": "Hidden",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Hold"
+        },
+        {
+          "From": 4,
+          "To": 9,
+          "ActionTaken": "Sneak"
+        },
+        {
+          "From": 10,
+          "To": 19,
+          "ActionTaken": "Charge"
+        },      
+        {
+          "From": 20,
+          "To": 20,
+          "ActionTaken": "Rush"
+        }
+      ]
+    },
+    {
+      "Status": "Engaged",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 6,
+          "ActionTaken": "Fall Back"
+        },
+        {
+          "From": 7,
+          "To": 19,
+          "ActionTaken": "Onslaught"
+        },
+        {
+          "From": 20,
+          "To": 20,
+          "ActionTaken": "Pounce"
+        }
+      ]
+    },    
+    {
+      "Status": "Close",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 6,
+          "ActionTaken": "Fall Back"
+        },        
+        {
+          "From": 7,
+          "To": 19,
+          "ActionTaken": "Charge"
+        },
+        {
+          "From": 20,
+          "To": 20,
+          "ActionTaken": "Pounce"
+        }
+      ]
+    },
+    {
+      "Status": "Other",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 9,
+          "ActionTaken": "Fall Back"
+        },        
+        {
+          "From": 10,
+          "To": 20,
+          "ActionTaken": "Rush"
+        }
+      ]
+    }
+  ]
+}

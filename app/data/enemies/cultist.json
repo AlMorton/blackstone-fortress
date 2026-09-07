@@ -1,0 +1,112 @@
+{
+  "Name": "Cultists",
+  "BehaviourChartColumns": [
+    {
+      "Status": "Hidden",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Hold"
+        },
+        {
+          "From": 4,
+          "To": 12,
+          "ActionTaken": "Advance"
+        },
+        {
+          "From": 13,
+          "To": 17,
+          "ActionTaken": "Charge"
+        },      
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Overwhelm"
+        }
+      ]
+    },
+    {
+      "Status": "Engaged",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Fall Back"
+        },
+        {
+          "From": 4,
+          "To": 17,
+          "ActionTaken": "Onslaught"
+        },
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Full-auto"
+        }
+      ]
+    },
+    {
+      "Status": "In Cover",
+      "Actions": [
+        
+        {
+          "From": 1,
+          "To": 12,
+          "ActionTaken": "Onslaught"
+        },
+        {
+          "From": 13,
+          "To": 17,
+          "ActionTaken": "Charge"
+        },
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Overwhelm"
+        }
+      ]
+
+    },
+    {
+      "Status": "Close",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Hold"
+        },        
+        {
+          "From": 4,
+          "To": 9,
+          "ActionTaken": "Onslaught"
+        },
+        {
+          "From": 10,
+          "To": 17,
+          "ActionTaken": "Charge"
+        },
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Overwhelm"
+        }
+      ]
+    },
+    {
+      "Status": "Other",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 9,
+          "ActionTaken": "Fall Back"
+        },        
+        {
+          "From": 10,
+          "To": 20,
+          "ActionTaken": "Rush"
+        }
+      ]
+    }
+  ]
+}

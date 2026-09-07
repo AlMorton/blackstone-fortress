@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/* Palette lifted from the Blazor app's Sass/_variables.scss and Sass/app.scss. */
+@theme {
+  --font-display: "Audiowide", cursive;
+
+  --color-bf-ink: #000000;
+  --color-bf-text: #bfbfbf;
+  --color-bf-nav: #d7d7d7;
+  --color-bf-card: #dbdbdb;
+  --color-bf-cyan: #36ffff;
+  --color-bf-glow: #00dcff59;
+  --color-bf-deep: #0e2739ab;
+  --color-bf-green: #28a745;
+  --color-bf-pink: #ff006a59;
+  --color-bf-pink-edge: #ff0986ba;
+  --color-bf-panel: #01023e7d;
+  --color-bf-btn: #475e9ca8;
+
+  --gradient-bf-blue: linear-gradient(to right, #0e2739ab, #00dcff59);
+  --gradient-bf-enemy: linear-gradient(to right, #0e2739ab, #ff006a59);
+  --gradient-bf-sidebar: linear-gradient(90deg, rgb(5, 39, 103) 0%, #000 100%);
+  --gradient-bf-panel: linear-gradient(180deg, #00dcff59 0%, #000 100%);
+  --gradient-bf-selected: linear-gradient(to right, #1d4f73, #017c90);
+  --gradient-bf-modal: linear-gradient(180deg, #0e2739ab, #00b3d0fa);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bf-ink);
+    color: var(--color-bf-text);
+    font-family: var(--font-display);
+  }
+}
+
+/*
+ * Gradient backgrounds Tailwind has no utility for. Everything else (spacing, layout,
+ * sizing, borders) is a plain utility class on the component.
+ */
+@utility bf-gradient-blue {
+  background-image: var(--gradient-bf-blue);
+}
+@utility bf-gradient-enemy {
+  background-image: var(--gradient-bf-enemy);
+}
+@utility bf-gradient-sidebar {
+  background-image: var(--gradient-bf-sidebar);
+}
+@utility bf-gradient-panel {
+  background-image: var(--gradient-bf-panel);
+}
+@utility bf-gradient-selected {
+  background-image: var(--gradient-bf-selected);
+}
+@utility bf-gradient-modal {
+  background-image: var(--gradient-bf-modal);
+}
+
+/* The tiled fortress backdrop behind the main column. */
+@utility bf-backdrop {
+  background-image: url("/images/bgk.png");
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+
+/*
+ * The expand/collapse panels animate height. Tailwind can't express keyframes inline,
+ * and the original used a fixed 40px; interpolate-size lets us animate to auto instead
+ * so panels of any height work.
+ */
+@utility bf-collapsible {
+  interpolate-size: allow-keywords;
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 200ms ease-out;
+
+  & > * {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  &[data-collapsed="true"] {
+    grid-template-rows: 0fr;
+  }
+}

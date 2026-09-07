@@ -1,0 +1,151 @@
+[
+  {
+    "Enemy": "All",
+    "Actions": [
+      {
+        "Name": "Advance",
+        "Description": "Move towards the closest explorer. Then attack the closest explorer that is in range of and visible to this hostile."
+      },
+      {
+        "Name": "Aim",
+        "Description": "Attack the furthest explorer that is in range of and visible to this hostile. That attack ignores cover."
+      },
+      {
+        "Name": "Charge",
+        "Description": "Move towards the closest explorer. Then attack an explorer that is adjacent and visible to this hostile. If there are no explorers adjacent and visible to this hostile, move towards the closest  explorer a second time."
+      },
+      {
+        "Name": "Fall Back",
+        "Description": "Double this hostile's move value when they take this action. If this hostile can make a move that ends in a hex that is not visible to any explorers, they do so. If they cannot, they attack the closest explorer that is in range of and visible to this hostile."
+      },
+      {
+        "Name": "Hold",
+        "Description": "Do nothing"
+      },
+      {
+        "Name": "Onslaught",
+        "Description": "Attack the closest explorer that is in range of and visible to this hostile. Then attack the closest explorer that is in range of and visible to this hostile (this may be a different target if the first explorer is taken out of action or another explorer is equally close)."
+      },
+      {
+        "Name": "Sneak",
+        "Description": "Make a move that ends as close as possible to an explorer without entering a hex that is visible to any explorers."
+      }
+    ]
+  },
+  {
+    "Enemy": "RoguePsyker",
+    "Actions": [
+      {
+        "Name": "Annihilate",
+        "Description": "Place the empowered marker beside the Rogue Psyker. Then attack an explorer that is adjacent and visible to this hostile. Re-roll failed attack rolls for that attack. The Rogue Psyker remains empowered until they suffer a wound or grievous wound."
+      },
+      {
+        "Name": "Disrupt",
+        "Description": "One unspent activation or destiny dice chosen by the hostile player is discarded and cannot be spent this turn. If no unspent activation or destiny dice are available, one explorer chosen by the hostile player suffers a wound. "
+      },
+      {
+        "Name": "Empower",
+        "Description": "Place the empowered marker beside the Rogue Psyker. If the Rogue Psyker is already empowered, treat this result as a Disrupt result instead. \"The Rogue Psyker remains empowered until they suffer a wound or grievous wound.\""
+      },
+      {
+        "Name": "Regenerate",
+        "Description": "Remove a wound counter from the Rogue Psyker. If the Rogue Psyker does not have a wound counter, treat this result as a Disrupt result instead."
+      }
+    ]
+  },
+  {
+    "Enemy": "SpindleDrone",
+    "Actions": [
+      {
+        "Name": "Alert",
+        "Description": "Increase the threat level by 1 (see the Threat Level special rule on the other side of this reference card) and then take an Onslaught action. If the threat level is 3, take an Onslaught action and re-roll failed attack rolls for that action instead."
+      }
+    ]
+  },
+  {
+    "Enemy": "TraitorGuard",
+    "Actions": [
+      {
+        "Name": "Fury",
+        "Description": "Take an Onslaught action. Re-roll failed attack rolls for that action."
+      },
+      {
+        "Name": "Rush",
+        "Description": "Move towards the closest explorer. Then take a Charge action."
+      }
+    ]
+  },
+  {
+    "Enemy": "ChaosBeastman",
+    "Actions": [
+      {
+        "Name": "Fury",
+        "Description": "Take an Onslaught action. Re-roll failed attack rolls for that action."
+      },
+      {
+        "Name": "Rush",
+        "Description": "Move towards the closest explorer. Then take a Charge action."
+      }
+    ]
+  },
+  {
+    "Enemy": "NegavoltCultist",
+    "Actions": [
+      {
+        "Name": "Fury",
+        "Description": "Take an Onslaught action. Re-roll failed attack rolls for that action."
+      },
+      {
+        "Name": "Recharge",
+        "Description": "Remove a wound counter from the Negavolt Cultist. If the Negavolt Cultist does not have a wound counter, treat this result as an Advance result instead. "
+      },
+      {
+        "Name": "Rush",
+        "Description": "Move towards the closest explorer. Then take a Charge action."
+      }
+    ]
+  },
+  {
+    "Enemy": "UrGhul",
+    "Actions": [
+      {
+        "Name": "Pounce",
+        "Description": " If there is an explorer adjacent and visible to this Ur-Ghul, take an Onslaught action. Otherwise, take a Charge action. Re-roll failed attack rolls for whichever action."
+      },
+      {
+        "Name": "Rush",
+        "Description": "Move towards the closest explorer. Then take a Charge action."
+      }
+    ]
+  },
+  {
+    "Enemy": "ChaosSpaceMarine",
+    "Actions": [
+      {
+        "Name": "Rapid Fire",
+        "Description": "Take an Onslaught action. Re-roll failed attack rolls for that action."
+      },
+      {
+        "Name": "Rush",
+        "Description": "Move towards the closest explorer. Then take a Charge action."
+      }
+    ]
+  },
+  {
+    "Enemy": "ObsidiusMallex",
+    "Actions": [
+      {
+        "Name": "Fury",
+        "Description": "Take an Onslaught action. Re-roll failed attack rolls for that action."
+      },
+      {
+        "Name": "Overcharge",
+        "Description": "Make an overcharged Plasma Pistol attack against the closest explorer that is in range of and visible to Obsidius Mallex."
+      },
+      {
+        "Name": "Rush",
+        "Description": "Move towards the closest explorer. Then take a Charge action."
+      }
+    ]
+  }
+]

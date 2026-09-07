@@ -1,0 +1,135 @@
+{
+  "Name": "Borewym Infestation",
+  "BehaviourChartColumns": [
+    {
+      "Status": "Hidden",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Tunnel"
+        },
+        {
+          "From": 4,
+          "To": 6,
+          "ActionTaken": "Hold"
+        },
+        {
+          "From": 7,
+          "To": 12,
+          "ActionTaken": "Sneak"
+        },
+        {
+          "From": 13,
+          "To": 17,
+          "ActionTaken": "Advance"
+        },
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Consume"
+        }
+      ]
+    },
+    {
+      "Status": "Engaged",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Tunnel"
+        },
+        {
+          "From": 4,
+          "To": 12,
+          "ActionTaken": "Advance"
+        },
+        {
+          "From": 13,
+          "To": 17,
+          "ActionTaken": "Onslaught"
+        },
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Consume"
+        }
+      ]
+    },
+    {
+      "Status": "In Cover",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Tunnel"
+        },
+        {
+          "From": 4,
+          "To": 12,
+          "ActionTaken": "Hold"
+        },
+        {
+          "From": 13,
+          "To": 17,
+          "ActionTaken": "Charge"
+        },
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Consume"
+        }
+      ]
+    },
+    {
+      "Status": "Close",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Tunnel"
+        },
+        {
+          "From": 4,
+          "To": 6,
+          "ActionTaken": "Fall Back"
+        },
+        {
+          "From": 7,
+          "To": 17,
+          "ActionTaken": "Charge"
+        },
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Consume"
+        }
+      ]
+    },
+    {
+      "Status": "Other",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Tunnel"
+        },
+        {
+          "From": 4,
+          "To": 6,
+          "ActionTaken": "Fall Back"
+        },
+        {
+          "From": 7,
+          "To": 15,
+          "ActionTaken": "Charge"
+        },
+        {
+          "From": 16,
+          "To": 20,
+          "ActionTaken": "Consume"
+        }
+      ]
+    }
+  ]
+}

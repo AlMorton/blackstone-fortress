@@ -1,0 +1,125 @@
+{
+  "Name": "Obsidius Mallex",
+  "BehaviourChartColumns": [
+    {
+      "Status": "Hidden",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Sneak"
+        },
+        {
+          "From": 4,
+          "To": 9,
+          "ActionTaken": "Advance"
+        },
+        {
+          "From": 10,
+          "To": 12,
+          "ActionTaken": "Charge"
+        },      
+        {
+          "From": 13,
+          "To": 20,
+          "ActionTaken": "Rush"
+        }
+      ]
+    },
+    {
+      "Status": "Engaged",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 12,
+          "ActionTaken": "Onslaught"
+        },        
+        {
+          "From": 13,
+          "To": 20,
+          "ActionTaken": "Fury"
+        }
+      ]
+    },
+    {
+      "Status": "Close",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 6,
+          "ActionTaken": "Onslaught"
+        },
+        {
+          "From": 7,
+          "To": 15,
+          "ActionTaken": "Charge"
+        },       
+        {
+          "From": 16,
+          "To": 20,
+          "ActionTaken": "Overcharge"
+        }
+      ]
+    },
+    {
+      "Status": "In Cover",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 6,
+          "ActionTaken": "Charge"
+        },
+        {
+          "From": 7,
+          "To": 9,
+          "ActionTaken": "Aim"
+        },
+        {
+          "From": 10,
+          "To": 15,
+          "ActionTaken": "Onslaught"
+        },
+        {
+          "From": 16,
+          "To": 19,
+          "ActionTaken": "Overcharge"
+        },
+        {
+          "From": 20,
+          "To": 20,
+          "ActionTaken": "Rush"
+        }
+      ]
+    },
+    {
+      "Status": "Other",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 6,
+          "ActionTaken": "Advance"
+        },
+        {
+          "From": 7,
+          "To": 9,
+          "ActionTaken": "Aim"
+        },
+        {
+          "From": 10,
+          "To": 15,
+          "ActionTaken": "Onslaught"
+        },
+        {
+          "From": 16,
+          "To": 19,
+          "ActionTaken": "Overcharge"
+        },
+        {
+          "From": 20,
+          "To": 20,
+          "ActionTaken": "Rush"
+        }
+      ]
+    }
+  ]
+}

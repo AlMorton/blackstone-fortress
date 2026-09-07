@@ -1,0 +1,110 @@
+{
+  "Name": "Ambull",
+  "BehaviourChartColumns": [
+    {
+      "Status": "Hidden",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Hold"
+        },
+        {
+          "From": 4,
+          "To": 12,
+          "ActionTaken": "Advance"
+        },
+        {
+          "From": 13,
+          "To": 17,
+          "ActionTaken": "Charge"
+        },
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Tunnel"
+        }
+      ]
+    },
+    {
+      "Status": "Engaged",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 12,
+          "ActionTaken": "Advance"
+        },
+        {
+          "From": 13,
+          "To": 17,
+          "ActionTaken": "Onslaught"
+        },
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Swipe"
+        }
+      ]
+    },
+    {
+      "Status": "Close",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 6,
+          "ActionTaken": "Advance"
+        },
+        {
+          "From": 7,
+          "To": 17,
+          "ActionTaken": "Charge"
+        },
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Tunnel"
+        }
+      ]
+    },
+    {
+      "Status": "Protective",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 17,
+          "ActionTaken": "Charge"
+        },
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Tunnel"
+        }
+      ]
+    },
+    {
+      "Status": "Other",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Hold"
+        },
+        {
+          "From": 4,
+          "To": 9,
+          "ActionTaken": "Fall Back"
+        },
+        {
+          "From": 10,
+          "To": 17,
+          "ActionTaken": "Charge"
+        },
+        {
+          "From": 18,
+          "To": 20,
+          "ActionTaken": "Tunnel"
+        }
+      ]
+    }
+  ]
+}

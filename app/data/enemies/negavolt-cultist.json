@@ -1,0 +1,70 @@
+{
+  "Name": "Negavolt Cultist",
+  "BehaviourChartColumns": [
+    {
+      "Status": "Hidden",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Recharge"
+        },
+        {
+          "From": 4,
+          "To": 9,
+          "ActionTaken": "Hold"
+        },
+        {
+          "From": 10,
+          "To": 19,
+          "ActionTaken": "Charge"
+        },      
+        {
+          "From": 20,
+          "To": 20,
+          "ActionTaken": "Rush"
+        }
+      ]
+    },
+    {
+      "Status": "Engaged",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Recharge"
+        },
+        {
+          "From": 4,
+          "To": 19,
+          "ActionTaken": "Onslaught"
+        },
+        {
+          "From": 20,
+          "To": 20,
+          "ActionTaken": "Fury"
+        }
+      ]
+    }, 
+    {
+      "Status": "Other",
+      "Actions": [
+        {
+          "From": 1,
+          "To": 3,
+          "ActionTaken": "Recharge"
+        },
+        {
+          "From": 1,
+          "To": 9,
+          "ActionTaken": "Charge"
+        },
+        {
+          "From": 10,
+          "To": 20,
+          "ActionTaken": "Rush"
+        }
+      ]
+    }
+  ]
+}
