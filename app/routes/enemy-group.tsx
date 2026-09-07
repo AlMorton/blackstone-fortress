@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import { EnemyCard } from "~/components/EnemyCard";
+import { GroupCards } from "~/components/GroupCards";
 import { EnemyPickerModal } from "~/components/EnemyPickerModal";
 import { GROUP_COUNT } from "~/store/gameState";
 import { useGame } from "~/store/GameProvider";
@@ -15,7 +15,10 @@ export default function EnemyGroupRoute({ params }: Route.ComponentProps) {
   const [pickerOpen, setPickerOpen] = useState(false);
 
   const groupNumber = Number(params.groupNumber);
-  const valid = Number.isInteger(groupNumber) && groupNumber >= 1 && groupNumber <= GROUP_COUNT;
+  const valid =
+    Number.isInteger(groupNumber) &&
+    groupNumber >= 1 &&
+    groupNumber <= GROUP_COUNT;
 
   if (!valid) {
     return (
@@ -46,15 +49,7 @@ export default function EnemyGroupRoute({ params }: Route.ComponentProps) {
         </Link>
       </div>
 
-      {group.members.length === 0 ? (
-        <p className="opacity-70">This group is empty.</p>
-      ) : (
-        <div className="flex flex-row flex-wrap">
-          {group.members.map((member) => (
-            <EnemyCard key={member.instanceId} group={groupNumber} member={member} />
-          ))}
-        </div>
-      )}
+      <GroupCards group={groupNumber} />
 
       <EnemyPickerModal
         group={pickerOpen ? groupNumber : null}

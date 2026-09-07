@@ -1,14 +1,16 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router";
 import { getEnemy } from "~/lib/enemies";
 import { useGame } from "~/store/GameProvider";
 import type { InitiativeItem } from "~/types";
 import { AdventurerPicker } from "./AdventurerPicker";
 import { EnemyGroupPicker } from "./EnemyGroupPicker";
 
-export function InitiativeTrack() {
+export function InitiativeTrack({
+  onOpenGroup,
+}: {
+  onOpenGroup: (group: number) => void;
+}) {
   const { state, dispatch } = useGame();
-  const navigate = useNavigate();
   const [playerPickerOpen, setPlayerPickerOpen] = useState(false);
   const [groupPickerOpen, setGroupPickerOpen] = useState(false);
 
@@ -97,11 +99,9 @@ export function InitiativeTrack() {
             onGrab={() => setDragIndex(index)}
             onDragOver={() => setOverIndex(index)}
             onDrop={() => commitMove(index)}
-            onOpen={() =>
-              item.kind === "group"
-                ? navigate(`/enemygroup/${item.group}`)
-                : undefined
-            }
+            onOpen={() => {
+              if (item.kind === "group") onOpenGroup(item.group);
+            }}
           />
         ))}
       </div>
