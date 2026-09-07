@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { actionDescriptions } from "../app/lib/actions";
-import { parseRulesText } from "../app/lib/rulesText";
+import { GLYPHS, parseRulesText } from "../app/lib/rulesText";
 
 describe("parseRulesText", () => {
   it("returns a single text segment when there is no token", () => {
@@ -10,16 +10,24 @@ describe("parseRulesText", () => {
   it("splits a token out of the surrounding text", () => {
     expect(parseRulesText("Make a {d6} attack roll.")).toEqual([
       { kind: "text", value: "Make a " },
-      { kind: "die" },
+      { kind: "glyph", name: "d6" },
       { kind: "text", value: " attack roll." },
     ]);
   });
 
   it("handles a token at the very start and end", () => {
-    expect(parseRulesText("{d6} then {d6}")).toEqual([
-      { kind: "die" },
+    expect(parseRulesText("{d6} then {discovery}")).toEqual([
+      { kind: "glyph", name: "d6" },
       { kind: "text", value: " then " },
-      { kind: "die" },
+      { kind: "glyph", name: "discovery" },
+    ]);
+  });
+
+  it("keeps distinct glyphs apart", () => {
+    const segments = parseRulesText("a {discovery} b {d6} c");
+    expect(segments.filter((s) => s.kind === "glyph")).toEqual([
+      { kind: "glyph", name: "discovery" },
+      { kind: "glyph", name: "d6" },
     ]);
   });
 
@@ -27,18 +35,27 @@ describe("parseRulesText", () => {
     expect(parseRulesText("")).toEqual([]);
   });
 
-  it("leaves a lone brace alone", () => {
-    const text = "Costs {1} and a {d7}.";
+  it("leaves braces that are not known glyphs alone", () => {
+    const text = "Costs {1} and a {d7} and {} too.";
     expect(parseRulesText(text)).toEqual([{ kind: "text", value: text }]);
   });
 });
 
 describe("tokens in the shipped data", () => {
-  it("never leaves a raw {d6} token unrendered anywhere it is used", () => {
-    // Guards against a description using a token the renderer does not know.
+  /** Guards against a description using a token the renderer cannot draw. */
+  it("only uses glyph tokens the renderer knows", () => {
+    const known = new Set<string>(GLYPHS);
     for (const [name, text] of actionDescriptions) {
-      const leftovers = text.replace(/\{d6\}/g, "").match(/\{[^}]*\}/g);
-      expect(leftovers, `${name} has unknown token(s)`).toBeNull();
+      for (const match of text.matchAll(/\{([^}]*)\}/g)) {
+        const token = match[1] ?? "";
+        expect(known.has(token), `${name} uses unknown token {${token}}`).toBe(true);
+      }
+    }
+  });
+
+  it("leaves no bracketed placeholders behind from transcription", () => {
+    for (const [name, text] of actionDescriptions) {
+      expect(text, `${name} still has a [placeholder]`).not.toMatch(/\[[^\]]*\]/);
     }
   });
 });

@@ -94,3 +94,37 @@ export function DieIcon() {
     </svg>
   );
 }
+
+/**
+ * The unexplored side of a discovery marker: a purple triangle carrying a question
+ * mark, as printed inline in the Borewyrm Infestation's Consume rules.
+ */
+export function DiscoveryIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      role="img"
+      aria-label="unexplored discovery marker"
+      className="inline-block h-[1.15em] w-[1.15em] align-[-0.22em]"
+    >
+      <path
+        d="M12 2.5 22.5 21H1.5z"
+        className="fill-bf-discovery"
+        stroke="currentColor"
+        strokeOpacity="0.3"
+        strokeWidth="1"
+      />
+      <text
+        x="12"
+        y="19.2"
+        textAnchor="middle"
+        fontSize="11"
+        fontWeight="700"
+        fontFamily="system-ui, -apple-system, sans-serif"
+        fill="#fff"
+      >
+        ?
+      </text>
+    </svg>
+  );
+}

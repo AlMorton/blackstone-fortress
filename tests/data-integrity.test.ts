@@ -1,22 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { actionDescriptions } from "../app/lib/actions";
+import { ACTION_GROUP, actionDescriptions, describeAction } from "../app/lib/actions";
 import { CONFUSION, resolveAction } from "../app/lib/behaviour";
 import { enemies } from "../app/lib/enemies";
 
 const D20 = Array.from({ length: 20 }, (_, i) => i + 1);
 
-/**
- * Actions an enemy can roll that have no rules text, so the panel renders empty. A
- * pre-existing gap in the game data, allow-listed so the suite stays green while NEW
- * breakage still fails. Delete an entry once its description is added — the test below
- * asserts the list has not gone stale.
- */
-const ACTIONS_WITHOUT_DESCRIPTIONS = [
-  // The Ambull and the Borewyrm Infestation have genuinely different Tunnel rules,
-  // and describeAction resolves by name alone, so one of them would get the other's
-  // text. Left blank rather than wrong until the lookup is made enemy-aware.
-  "Tunnel",
-];
 
 
 describe("enemy data", () => {
@@ -94,27 +82,65 @@ describe("action descriptions", () => {
    * name up in the ActionsService dictionary, and a miss renders an empty rules panel.
    */
   it("has rules text for every action any enemy can roll", () => {
-    const missing = new Set<string>();
+    /**
+     * Resolved per enemy, not by name alone: an action's text can differ between
+     * enemies, so a name having text *somewhere* is not enough.
+     */
+    const missing: string[] = [];
 
     for (const enemy of enemies) {
       for (const column of enemy.columns) {
         for (const range of column.actions) {
-          if (!actionDescriptions.has(range.actionTaken)) missing.add(range.actionTaken);
+          if (!describeAction(range.actionTaken, enemy.id)) {
+            missing.push(`${enemy.id} / ${column.status} / ${range.actionTaken}`);
+          }
         }
       }
     }
 
-    const unexpected = [...missing].filter((name) => !ACTIONS_WITHOUT_DESCRIPTIONS.includes(name));
-    expect(unexpected, `actions with no rules text:\n${unexpected.join("\n")}`).toEqual([]);
-
-    const fixed = ACTIONS_WITHOUT_DESCRIPTIONS.filter((name) => !missing.has(name));
-    expect(fixed, `now described — drop from ACTIONS_WITHOUT_DESCRIPTIONS:\n${fixed.join("\n")}`)
-      .toEqual([]);
+    expect(missing, `actions with no rules text:\n${missing.join("\n")}`).toEqual([]);
   });
 
   it("has non-empty text for each described action", () => {
     for (const [name, description] of actionDescriptions) {
       expect(description.trim(), name).not.toBe("");
     }
+  });
+});
+
+describe("per-enemy action rules", () => {
+  it("gives the Ambull and the Borewyrm different Tunnel rules", () => {
+    const ambull = describeAction("Tunnel", "ambull");
+    const borewyrm = describeAction("Tunnel", "borewyrm-infestation");
+
+    expect(ambull).toContain("Ambull location marker");
+    expect(borewyrm).toContain("discovery marker that is furthest");
+    expect(ambull).not.toBe(borewyrm);
+  });
+
+  it("shares the base form's text with the enraged variant", () => {
+    expect(describeAction("Tunnel", "ambull-enraged")).toBe(describeAction("Tunnel", "ambull"));
+  });
+
+  it("falls back to the shared set for common actions", () => {
+    for (const id of ["ambull", "borewyrm-infestation", "ur-ghul"]) {
+      expect(describeAction("Onslaught", id)).toContain("Attack the closest explorer");
+    }
+  });
+
+  it("returns empty rather than throwing for an unknown enemy or action", () => {
+    expect(describeAction("Tunnel", "space-hamster")).toBe("");
+    expect(describeAction("Nonsense", "ambull")).toBe("");
+    expect(describeAction(undefined, "ambull")).toBe("");
+  });
+
+  it("maps every enemy file to an action group that exists", () => {
+    const groups = new Set(
+      [...actionDescriptions.keys()].length ? Object.values(ACTION_GROUP) : [],
+    );
+    for (const enemy of enemies) {
+      expect(ACTION_GROUP[enemy.id], `${enemy.id} has no action group mapping`).toBeDefined();
+    }
+    expect(groups.size).toBeGreaterThan(0);
   });
 });

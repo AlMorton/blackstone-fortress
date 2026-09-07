@@ -1,11 +1,17 @@
 /**
- * Some cards print an inline glyph in their rules text — e.g. the Cultist Firebrand's
- * "Make a [d6] attack roll". The JSON stores those as {d6} tokens so the text stays
- * plain and diffable, and the renderer swaps in an icon.
+ * Some cards print inline glyphs in their rules text — the Cultist Firebrand's
+ * "Make a [d6] attack roll", the Borewyrm's "showing the [discovery] side". The JSON
+ * stores those as {name} tokens so the text stays plain and diffable, and the renderer
+ * swaps in an icon.
  */
-export type RulesSegment = { kind: "text"; value: string } | { kind: "die" };
+export const GLYPHS = ["d6", "discovery"] as const;
+export type GlyphName = (typeof GLYPHS)[number];
 
-const TOKEN = /\{d6\}/g;
+export type RulesSegment =
+  | { kind: "text"; value: string }
+  | { kind: "glyph"; name: GlyphName };
+
+const TOKEN = new RegExp(`\\{(${GLYPHS.join("|")})\\}`, "g");
 
 export function parseRulesText(text: string): RulesSegment[] {
   const segments: RulesSegment[] = [];
@@ -15,7 +21,7 @@ export function parseRulesText(text: string): RulesSegment[] {
     if (match.index > last) {
       segments.push({ kind: "text", value: text.slice(last, match.index) });
     }
-    segments.push({ kind: "die" });
+    segments.push({ kind: "glyph", name: match[1] as GlyphName });
     last = match.index + match[0].length;
   }
 

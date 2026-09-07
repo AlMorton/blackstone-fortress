@@ -154,6 +154,10 @@
       {
         "Name": "Swipe",
         "Description": "Make an attack against each explorer that is adjacent and visible to the Ambull."
+      },
+      {
+        "Name": "Tunnel",
+        "Description": "Remove the Ambull from the battlefield and place the Ambull location marker on the hex it was removed from \u2013 any remaining actions during this activation are lost. The next time the initiative card for the Ambull is reached, do not roll on the behaviour table for the Ambull's first action. Instead, the Ambull is placed in a hex as close as possible to the explorer that is closest to the Ambull location marker. Once the Ambull has been placed, remove the Ambull location marker and roll for the Ambull's second action as normal."
       }
     ]
   },
@@ -162,7 +166,11 @@
     "Actions": [
       {
         "Name": "Consume",
-        "Description": "Double this hostile's Move value when they take this action. Move the Borewyrm Infestation towards the nearest discovery marker. If it finishes this move in a hex with a discovery marker, remove that discovery marker, then remove any wound counters next to this Borewyrm Infestation. If there are no discovery markers, or the only discovery markers on the board are showing the [?] side, treat this result as a Sneak result instead."
+        "Description": "Double this hostile's Move value when they take this action. Move the Borewyrm Infestation towards the nearest discovery marker. If it finishes this move in a hex with a discovery marker, remove that discovery marker, then remove any wound counters next to this Borewyrm Infestation. If there are no discovery markers, or the only discovery markers on the board are showing the {discovery} side, treat this result as a Sneak result instead."
+      },
+      {
+        "Name": "Tunnel",
+        "Description": "Remove the Borewyrm Infestation from the board and place it in the same hex as the discovery marker that is furthest from any explorers or other hostiles (other than the Ambull or any other Borewyrm Infestations). If this is not possible, treat this result as a Sneak result instead."
       }
     ]
   },

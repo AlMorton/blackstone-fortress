@@ -18,6 +18,8 @@
   --color-bf-btn: #475e9ca8;
   /* Blank d6 glyph used inline in card rules text. */
   --color-bf-die: #9ca3af;
+  /* Unexplored discovery marker glyph. */
+  --color-bf-discovery: #8b5cf6;
 
   --gradient-bf-blue: linear-gradient(to right, #0e2739ab, #00dcff59);
   --gradient-bf-enemy: linear-gradient(to right, #0e2739ab, #ff006a59);

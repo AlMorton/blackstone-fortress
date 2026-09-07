@@ -30,7 +30,7 @@ export function BehaviourCard({
   className?: string;
 }) {
   const [collapsed, setCollapsed] = useState(false);
-  const description = describeAction(status);
+  const description = describeAction(status, enemy.id);
 
   return (
     <article className={`bf-gradient-blue relative rounded text-bf-card ${className}`}>
