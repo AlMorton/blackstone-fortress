@@ -11,14 +11,14 @@
         },
         {
           "From": 4,
-          "To": 6,
+          "To": 9,
           "ActionTaken": "Advance"
         },
         {
-          "From": 7,
+          "From": 10,
           "To": 19,
           "ActionTaken": "Charge"
-        },      
+        },
         {
           "From": 20,
           "To": 20,
@@ -38,9 +38,9 @@
           "From": 16,
           "To": 20,
           "ActionTaken": "Fury"
-        }     
+        }
       ]
-    },    
+    },
     {
       "Status": "Close",
       "Actions": [
@@ -53,7 +53,7 @@
           "From": 10,
           "To": 19,
           "ActionTaken": "Charge"
-        }, 
+        },
         {
           "From": 20,
           "To": 20,
@@ -73,7 +73,7 @@
           "From": 10,
           "To": 19,
           "ActionTaken": "Charge"
-        },       
+        },
         {
           "From": 20,
           "To": 20,

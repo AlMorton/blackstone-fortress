@@ -12,12 +12,11 @@ const D20 = Array.from({ length: 20 }, (_, i) => i + 1);
  * asserts the list has not gone stale.
  */
 const ACTIONS_WITHOUT_DESCRIPTIONS = [
+  // The card's text contains an inline weapon glyph that did not scan legibly.
   "All Shall Burn",
-  "Consume",
-  "Firestorm",
-  "Full-auto",
-  "Overwhelm",
-  "Swipe",
+  // The Ambull and the Borewyrm Infestation have genuinely different Tunnel rules,
+  // and describeAction resolves by name alone, so one of them would get the other's
+  // text. Left blank rather than wrong until the lookup is made enemy-aware.
   "Tunnel",
 ];
 

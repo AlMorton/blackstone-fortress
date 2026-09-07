@@ -18,7 +18,7 @@
           "From": 13,
           "To": 19,
           "ActionTaken": "Advance"
-        },      
+        },
         {
           "From": 20,
           "To": 20,
@@ -82,7 +82,7 @@
         {
           "From": 10,
           "To": 19,
-          "ActionTaken": "Charge"
+          "ActionTaken": "Onslaught"
         },
         {
           "From": 20,

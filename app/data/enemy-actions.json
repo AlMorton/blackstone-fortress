@@ -45,7 +45,7 @@
       },
       {
         "Name": "Empower",
-        "Description": "Place the empowered marker beside the Rogue Psyker. If the Rogue Psyker is already empowered, treat this result as a Disrupt result instead. \"The Rogue Psyker remains empowered until they suffer a wound or grievous wound.\""
+        "Description": "Place the empowered marker beside the Rogue Psyker. If the Rogue Psyker is already empowered, treat this result as a Disrupt result instead. The Rogue Psyker remains empowered until they suffer a wound or grievous wound."
       },
       {
         "Name": "Regenerate",
@@ -145,6 +145,46 @@
       {
         "Name": "Rush",
         "Description": "Move towards the closest explorer. Then take a Charge action."
+      }
+    ]
+  },
+  {
+    "Enemy": "Ambull",
+    "Actions": [
+      {
+        "Name": "Swipe",
+        "Description": "Make an attack against each explorer that is adjacent and visible to the Ambull."
+      }
+    ]
+  },
+  {
+    "Enemy": "BorewyrmInfestation",
+    "Actions": [
+      {
+        "Name": "Consume",
+        "Description": "Double this hostile's Move value when they take this action. Move the Borewyrm Infestation towards the nearest discovery marker. If it finishes this move in a hex with a discovery marker, remove that discovery marker, then remove any wound counters next to this Borewyrm Infestation. If there are no discovery markers, or the only discovery markers on the board are showing the [?] side, treat this result as a Sneak result instead."
+      }
+    ]
+  },
+  {
+    "Enemy": "Cultists",
+    "Actions": [
+      {
+        "Name": "Overwhelm",
+        "Description": "Move towards the closest explorer that has another Cultist hostile adjacent to it. Then attack an explorer that is adjacent and visible to this hostile; if there are no explorers adjacent and visible to this hostile, move towards the closest explorer that has another Cultist hostile adjacent to it a second time. If there are no explorers with another Cultist hostile adjacent to them, treat this result as Charge instead."
+      },
+      {
+        "Name": "Full-auto",
+        "Description": "Make an attack roll against each explorer adjacent and visible to this hostile. If only one explorer is adjacent, treat this as Onslaught instead."
+      }
+    ]
+  },
+  {
+    "Enemy": "CultistFirebrand",
+    "Actions": [
+      {
+        "Name": "Firestorm",
+        "Description": "Place a firestorm marker beside the Cultist Firebrand. While a firestorm marker is beside this Cultist Firebrand, each time an explorer moves into a hex that is within 2 hexes of them, the Cultist Firebrand makes a Hellfire Torch attack against that explorer. After that attack is resolved, that explorer can continue to move. Remove the firestorm marker the next time the Cultist Firebrand is activated."
       }
     ]
   }
