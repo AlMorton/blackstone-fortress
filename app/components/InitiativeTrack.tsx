@@ -64,6 +64,10 @@ export function InitiativeTrack({
 
   return (
     <>
+      <h2 className="bf-gradient-panel mb-2 flex h-10 items-center justify-center rounded-[10px] text-white">
+        Initiative Track
+      </h2>
+
       <div className="mb-2 flex flex-wrap items-center gap-2">
         <button
           type="button"
@@ -121,11 +125,20 @@ export function InitiativeTrack({
         {/* rectSortingStrategy, not the horizontal one: the track wraps onto rows. */}
         <SortableContext items={ids} strategy={rectSortingStrategy}>
           <div className="flex w-full flex-row flex-wrap justify-start">
-            {state.initiative.map((item) => (
+            {state.initiative.length === 0 && (
+              <p className="p-2 opacity-70">
+                Nobody on the track yet — use Add Player or Add Enemy Group to
+                begin.
+              </p>
+            )}
+
+            {state.initiative.map((item, index) => (
               <TrackCard
                 key={keyFor(item)}
                 id={keyFor(item)}
                 item={item}
+                position={index + 1}
+                total={state.initiative.length}
                 onOpen={
                   item.kind === "group" ? () => onOpenGroup(item.group) : null
                 }
@@ -141,10 +154,14 @@ export function InitiativeTrack({
 function TrackCard({
   id,
   item,
+  position,
+  total,
   onOpen,
 }: {
   id: string;
   item: InitiativeItem;
+  position: number;
+  total: number;
   onOpen: (() => void) | null;
 }) {
   const { state } = useGame();
@@ -176,17 +193,19 @@ function TrackCard({
           isEnemy ? "bf-gradient-enemy" : "bf-gradient-blue"
         } ${isDragging ? "bg-[#449498] bg-none" : ""}`}
       >
-        <div className="flex items-start gap-1 p-1.5 pb-0">
-          {/*
-            Two things are needed here. min-w-0 overrides a flex item's default
-            min-width: auto, and wrap-anywhere (overflow-wrap: anywhere) is what
-            actually shrinks the intrinsic min-content width — break-word alone
-            permits a break without reducing min-content, so "Shadowguide" still
-            forced the row wider than the card and shoved the grip outside it.
-          */}
-          <h4 className="min-w-0 flex-1 text-sm leading-tight wrap-anywhere text-white">
-            {label}
-          </h4>
+        {/*
+          The badge and grip share a thin top row so the name gets the card's full
+          width on the line below. Competing with them inline left too little room:
+          long names like "Amallyn Shadowguide" broke mid-word, and widening the card
+          enough to fix that dropped a phone to one card per row.
+        */}
+        <div className="flex items-center justify-between gap-1 px-1.5 pt-1.5">
+          <span
+            aria-hidden="true"
+            className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-black/40 text-[0.7rem] tabular-nums text-white/80"
+          >
+            {position}
+          </span>
 
           {/*
             The only drag activator. touch-action: none belongs here rather than on the
@@ -197,7 +216,7 @@ function TrackCard({
             {...attributes}
             {...listeners}
             type="button"
-            aria-label={`Reorder ${label}`}
+            aria-label={`Reorder ${label}, position ${position} of ${total}`}
             title="Drag to reorder"
             className={`touch-none rounded p-0.5 text-white/50 outline-none transition hover:bg-black/25 hover:text-white focus-visible:ring-2 focus-visible:ring-bf-cyan ${
               isDragging ? "cursor-grabbing text-white" : "cursor-grab"
@@ -206,6 +225,10 @@ function TrackCard({
             <GripIcon />
           </button>
         </div>
+
+        <h4 className="px-1.5 pt-0.5 text-sm leading-tight wrap-anywhere text-white">
+          {label}
+        </h4>
 
         {onOpen ? (
           <button

@@ -18,6 +18,9 @@ export default function Arena() {
 
   return (
     <div className="w-full">
+      {/* The page had no top-level heading; the two section headings sit under this. */}
+      <h1 className="sr-only">Arena</h1>
+
       <InitiativeTrack
         onOpenGroup={(group) => navigate(`/enemygroup/${group}`)}
       />

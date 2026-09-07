@@ -6,6 +6,7 @@ import {
   addPlayers,
   gotoArena,
   trackOrder,
+  trackPositions,
 } from "./helpers";
 
 /**
@@ -77,7 +78,21 @@ test.describe("initiative track reordering", () => {
      * key sent in the same tick is silently ignored.
      */
     const announcements = page.locator('[aria-live="assertive"]');
-    const handle = page.locator(`${TRACK_ITEM} ${GRIP}`).first();
+    const items = page.locator(TRACK_ITEM);
+    const handle = items.locator(GRIP).first();
+
+    /**
+     * The arrow depends on the layout, not the test's preference: the track wraps, so
+     * a narrow viewport stacks the cards and sortableKeyboardCoordinates then moves on
+     * the vertical axis. Hardcoding ArrowRight made this test fail for an unrelated
+     * card-width change.
+     */
+    const [first, second] = await Promise.all([
+      items.nth(0).boundingBox(),
+      items.nth(1).boundingBox(),
+    ]);
+    const sameRow = Math.abs(first!.y - second!.y) < 4;
+    const forward = sameRow ? "ArrowRight" : "ArrowDown";
 
     await handle.focus();
     await page.keyboard.press("Space");
@@ -92,7 +107,7 @@ test.describe("initiative track reordering", () => {
       .poll(async () => {
         const text = await announcements.innerText();
         if (text.includes("droppable area a:Janus Drake.")) {
-          await page.keyboard.press("ArrowRight");
+          await page.keyboard.press(forward);
         }
         return announcements.innerText();
       })
@@ -126,5 +141,56 @@ test.describe("initiative track reordering", () => {
     expect((await trackOrder(page)).sort()).toEqual(
       ["Group 1", "Janus Drake", "Pious Vorne"].sort(),
     );
+  });
+});
+
+test.describe("the track states its order", () => {
+  test("numbers every entry from 1", async ({ page }) => {
+    await gotoArena(page);
+    await addPlayers(page, ["Janus Drake", "Pious Vorne"]);
+    await addGroup(page, ["Ur-Ghul"]);
+    expect(await trackPositions(page)).toEqual(["1", "2", "3"]);
+  });
+
+  test("renumbers after a drag, so the badges match the real order", async ({
+    page,
+  }) => {
+    // The valuable assertion: proves the numbers track state, not just DOM movement.
+    await gotoArena(page);
+    await addPlayers(page, ["Janus Drake", "Pious Vorne"]);
+    await addGroup(page, ["Ur-Ghul"]);
+
+    const items = page.locator(TRACK_ITEM);
+    await dragTo(page, items.nth(0), items.nth(2));
+
+    await expect
+      .poll(() => trackOrder(page))
+      .toEqual(["Pious Vorne", "Group 1", "Janus Drake"]);
+    expect(await trackPositions(page)).toEqual(["1", "2", "3"]);
+
+    // Janus Drake moved to the end, so its grip must now announce position 3.
+    await expect(items.nth(2).locator(GRIP)).toHaveAttribute(
+      "aria-label",
+      "Reorder Janus Drake, position 3 of 3",
+    );
+  });
+
+  test("prompts when the track is empty", async ({ page }) => {
+    await gotoArena(page);
+    const prompt = page.getByText("Nobody on the track yet");
+    await expect(prompt).toBeVisible();
+
+    await addPlayers(page, ["Pious Vorne"]);
+    await expect(prompt).toBeHidden();
+
+    await page.getByRole("button", { name: "Clear arena" }).click();
+    await expect(prompt).toBeVisible();
+  });
+
+  test("names the section", async ({ page }) => {
+    await gotoArena(page);
+    await expect(
+      page.getByRole("heading", { name: "Initiative Track" }),
+    ).toBeVisible();
   });
 });

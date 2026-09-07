@@ -4,6 +4,11 @@ export const TRACK_ITEM = "[data-track-item]";
 /** The grip is the only drag activator; the rest of the card is a click target. */
 export const GRIP = '[aria-label^="Reorder"]';
 
+/** The position badges on the track, in DOM order. */
+export async function trackPositions(page: Page): Promise<string[]> {
+  return page.locator(`${TRACK_ITEM} span[aria-hidden="true"]`).allInnerTexts();
+}
+
 /** Names on the initiative track, in order. */
 export async function trackOrder(page: Page): Promise<string[]> {
   return page.locator(`${TRACK_ITEM} h4`).allInnerTexts();
