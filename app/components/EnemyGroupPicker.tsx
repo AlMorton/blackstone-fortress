@@ -25,7 +25,7 @@ export function EnemyGroupPicker({ open, onClose }: { open: boolean; onClose: ()
         <div
           role="tablist"
           aria-label="Enemy group"
-          className="flex flex-wrap gap-1 border-b border-white/20 pb-3"
+          className="flex flex-wrap gap-1.5 border-b border-bf-edge pb-3"
         >
           {GROUPS.map((group) => {
             const count = state.groups[group]?.members.length ?? 0;
@@ -37,12 +37,12 @@ export function EnemyGroupPicker({ open, onClose }: { open: boolean; onClose: ()
                 role="tab"
                 aria-selected={selected}
                 onClick={() => setActive(group)}
-                className={`min-w-10 rounded px-3 py-1.5 text-sm transition ${
+                className={`rounded-full border px-3 py-1 font-cond text-xs tracking-wider uppercase transition focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none min-w-10 ${
                   selected
-                    ? "bf-gradient-selected text-white ring-2 ring-bf-cyan"
+                    ? "border-bf-cyan bg-bf-cyan/10 text-bf-cyan"
                     : count > 0
-                      ? "bf-gradient-enemy text-white"
-                      : "border border-white/15 bg-[#0e2739]/85 text-white/80 hover:bg-[#16405c]/90 hover:text-white"
+                      ? "border-bf-pink-edge text-bf-bright hover:text-bf-cyan"
+                      : "border-bf-edge text-bf-text hover:border-bf-cyan hover:text-bf-bright"
                 }`}
               >
                 {group}

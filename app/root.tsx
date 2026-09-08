@@ -20,7 +20,8 @@ export function links() {
     },
     {
       rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css2?family=Audiowide&display=swap",
+      href:
+        "https://fonts.googleapis.com/css2?family=Audiowide&family=Oswald:wght@400;500;600&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap",
     },
   ];
 }
@@ -57,7 +58,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <GameProvider>
-      <main className="bf-backdrop min-h-screen">
+      <main className="bf-wash min-h-screen">
         <div className="mx-auto max-w-[1400px] px-4 pt-4 pb-10">
           <Outlet />
         </div>
@@ -68,7 +69,7 @@ export default function App() {
 
 /** Rendered into index.html at build time while the SPA bundle hydrates. */
 export function HydrateFallback() {
-  return <p className="p-8 text-white">Loading...</p>;
+  return <p className="p-8 text-bf-text">Loading…</p>;
 }
 
 export function ErrorBoundary() {
@@ -80,8 +81,9 @@ export function ErrorBoundary() {
       : "Unknown error";
 
   return (
-    <div className="p-8 text-white">
-      <h1 className="text-2xl">Something went wrong</h1>
+    <div className="p-8">
+      <p className="bf-eyebrow text-bf-kicker">Error</p>
+      <h1 className="mt-1 text-2xl text-bf-bright">Something went wrong</h1>
       <p className="mt-2 text-bf-text">{message}</p>
     </div>
   );

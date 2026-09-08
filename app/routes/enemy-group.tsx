@@ -18,8 +18,8 @@ export default function EnemyGroupRoute({ params }: Route.ComponentProps) {
 
   if (!valid) {
     return (
-      <div className="p-4 text-white">
-        <h1 className="text-xl">No such group</h1>
+      <div className="p-4">
+        <h1 className="text-2xl text-bf-bright">No such group</h1>
         <Link to="/" className="mt-2 inline-block underline">
           Back to the arena
         </Link>
@@ -31,26 +31,26 @@ export default function EnemyGroupRoute({ params }: Route.ComponentProps) {
 
   return (
     <div className="w-full">
-      <div className="mb-3 flex flex-wrap items-baseline gap-4">
-        <h1 className="text-xl text-white">{group.name}</h1>
+      <div className="mb-3 flex flex-wrap items-baseline gap-4 border-b border-bf-edge pb-2">
+        <h1 className="text-2xl text-bf-bright">{group.name}</h1>
         <Link
           to="/"
-          className="text-sm text-white/70 underline decoration-white/30 transition hover:text-white hover:decoration-white"
+          className="font-cond text-sm tracking-wide uppercase text-bf-muted underline decoration-bf-edge transition hover:text-bf-cyan hover:decoration-bf-cyan"
         >
           Back to the arena
         </Link>
       </div>
 
-      <p className="mb-3 text-sm opacity-80">
+      <p className="mb-3 text-sm text-bf-muted">
         Pick the situation each hostile is in to roll its behaviour chart.
       </p>
 
       <GroupCards group={groupNumber} />
 
-      <section className="mt-4 border-t border-white/15 pt-4">
-        <h2 className="mb-2 text-sm text-white/80">
+      <section className="mt-6 border-t border-bf-edge pt-4">
+        <h2 className="bf-eyebrow border-b border-bf-edge pb-2 text-bf-kicker mb-3">
           Add hostiles
-          <span className="ml-2 font-normal opacity-70">
+          <span className="ml-2 tracking-normal normal-case text-bf-muted">
             click to add, again for another copy
           </span>
         </h2>

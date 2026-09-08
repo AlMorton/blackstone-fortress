@@ -1,11 +1,26 @@
 @import "tailwindcss";
 
-/* Palette lifted from the Blazor app's Sass/_variables.scss and Sass/app.scss. */
+/*
+ * Palette lifted from the Blazor app's Sass/_variables.scss and Sass/app.scss, then
+ * extended with the flat surface/edge/type scale used by the printed twist cards so
+ * the app and that reference read as one system.
+ */
 @theme {
-  --font-display: "Audiowide", cursive;
+  /* Audiowide is the game's voice but unreadable in bulk, so it is reserved for page
+     identity. Oswald carries headings (condensed, like the printed card titles) and
+     Barlow carries body copy. */
+  --font-display: "Audiowide", "Trebuchet MS", cursive;
+  --font-cond: "Oswald", "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+  --font-body: "Barlow", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 
   --color-bf-ink: #000000;
+  /* Flat raised surface + hairline edge: the card treatment. */
+  --color-bf-slate: #0d1520;
+  --color-bf-slate-2: #121d2b;
+  --color-bf-edge: #23303f;
   --color-bf-text: #bfbfbf;
+  --color-bf-bright: #e8eef4;
+  --color-bf-muted: #7b8b9c;
   --color-bf-nav: #d7d7d7;
   --color-bf-card: #dbdbdb;
   --color-bf-cyan: #36ffff;
@@ -14,6 +29,8 @@
   --color-bf-green: #28a745;
   --color-bf-pink: #ff006a59;
   --color-bf-pink-edge: #ff0986ba;
+  /* The kicker pink — legible on the card head strip where --color-bf-pink is not. */
+  --color-bf-kicker: #ff6fae;
   --color-bf-panel: #01023e7d;
   --color-bf-btn: #475e9ca8;
   /* Blank d6 glyph used inline in card rules text. */
@@ -27,13 +44,24 @@
   --gradient-bf-panel: linear-gradient(180deg, #00dcff59 0%, #000 100%);
   --gradient-bf-selected: linear-gradient(to right, #1d4f73, #017c90);
   --gradient-bf-modal: linear-gradient(180deg, #0e2739ab, #00b3d0fa);
+  /* Head strip on a card: deep blue running into the hostile pink. */
+  --gradient-bf-head: linear-gradient(to right, #0e2739ab, #ff006a3d);
 }
 
 @layer base {
   body {
     background-color: var(--color-bf-ink);
     color: var(--color-bf-text);
-    font-family: var(--font-display);
+    font-family: var(--font-body);
+  }
+
+  /* Headings default to the condensed face; Audiowide is opted into per element. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-cond);
+    font-weight: 600;
   }
 }
 
@@ -59,10 +87,34 @@
 @utility bf-gradient-modal {
   background-image: var(--gradient-bf-modal);
 }
+@utility bf-gradient-head {
+  background-image: var(--gradient-bf-head);
+}
 
-/* The tiled fortress backdrop behind the main column. */
+/* Flat ground with a faint cyan wash from the top, so cards read as raised. */
+@utility bf-wash {
+  background-color: var(--color-bf-ink);
+  background-image: linear-gradient(180deg, #00dcff14 0%, transparent 640px);
+  background-repeat: no-repeat;
+}
+
+/* The tiled fortress backdrop. Replaced by bf-wash, kept for an easy revert. */
 @utility bf-backdrop {
   background-image: url("/images/bgk.png");
   background-size: cover;
   background-repeat: repeat-y;
+}
+
+/*
+ * Uppercase letterspaced label — the card kicker, reused for section eyebrows.
+ * Sets no colour, so pairing it with text-bf-kicker / text-bf-muted cannot lose a
+ * specificity fight with the utility that follows it.
+ */
+@utility bf-eyebrow {
+  font-family: var(--font-cond);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.4;
 }

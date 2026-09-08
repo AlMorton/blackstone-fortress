@@ -15,7 +15,7 @@ import {
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { getEnemy } from "~/lib/enemies";
 import { useGame } from "~/store/GameProvider";
 import type { InitiativeItem } from "~/types";
@@ -30,8 +30,11 @@ function keyFor(item: InitiativeItem) {
 
 export function InitiativeTrack({
   onOpenGroup,
+  actions,
 }: {
   onOpenGroup: (group: number) => void;
+  /** Page-level controls for the right of the action row, e.g. a link out. */
+  actions?: ReactNode;
 }) {
   const { state, dispatch, reset } = useGame();
   const [playerPickerOpen, setPlayerPickerOpen] = useState(false);
@@ -64,15 +67,13 @@ export function InitiativeTrack({
 
   return (
     <>
-      <h2 className="bf-gradient-panel mb-2 flex h-10 items-center justify-center rounded-[10px] text-white">
-        Initiative Track
-      </h2>
+      <h2 className="bf-eyebrow border-b border-bf-edge pb-2 text-bf-kicker mb-3">Initiative Track</h2>
 
       <div className="mb-2 flex flex-wrap items-center gap-2">
         <button
           type="button"
           onClick={() => setPlayerPickerOpen(true)}
-          className="bf-gradient-panel rounded-[10px] px-5 py-2.5 text-white transition hover:brightness-125"
+          className="rounded border px-4 py-2 font-cond text-sm tracking-wide uppercase transition focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none border-bf-edge bg-bf-slate text-bf-bright hover:border-bf-cyan hover:text-bf-cyan"
         >
           Add Player
         </button>
@@ -80,8 +81,8 @@ export function InitiativeTrack({
         <button
           type="button"
           onClick={() => setGroupPickerOpen(true)}
-          // Matches the enemy group cards on the track: pink gradient, pink edge.
-          className="bf-gradient-enemy rounded-[10px] border border-bf-pink-edge px-5 py-2.5 text-white transition hover:brightness-125"
+          // Pink edge marks it as the hostile action, matching the group cards.
+          className="rounded border px-4 py-2 font-cond text-sm tracking-wide uppercase transition focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none border-bf-pink-edge bg-bf-slate text-bf-bright hover:text-bf-kicker"
         >
           Add Enemy Group
         </button>
@@ -90,22 +91,26 @@ export function InitiativeTrack({
           <button
             type="button"
             onClick={() => dispatch({ type: "shuffleTrack" })}
-            className="bf-gradient-blue rounded-[10px] px-5 py-2.5 text-white transition hover:brightness-125"
+            className="rounded border px-4 py-2 font-cond text-sm tracking-wide uppercase transition focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none border-bf-edge bg-bf-slate text-bf-bright hover:border-bf-cyan hover:text-bf-cyan"
           >
             Shuffle
           </button>
         )}
 
-        {state.initiative.length > 0 && (
-          <button
-            type="button"
-            onClick={reset}
-            title="Remove every explorer and hostile"
-            className="ml-auto rounded-[10px] border border-white/20 px-4 py-2.5 text-sm text-white/70 transition hover:border-white/40 hover:text-white"
-          >
-            Clear arena
-          </button>
-        )}
+        <div className="ml-auto flex flex-wrap items-center gap-2">
+          {actions}
+
+          {state.initiative.length > 0 && (
+            <button
+              type="button"
+              onClick={reset}
+              title="Remove every explorer and hostile"
+              className="rounded border px-4 py-2 font-cond text-sm tracking-wide uppercase transition focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none border-bf-edge text-bf-muted hover:border-bf-cyan hover:text-bf-cyan"
+            >
+              Clear arena
+            </button>
+          )}
+        </div>
       </div>
 
       <AdventurerPicker
@@ -126,7 +131,7 @@ export function InitiativeTrack({
         <SortableContext items={ids} strategy={rectSortingStrategy}>
           <div className="flex w-full flex-row flex-wrap justify-start">
             {state.initiative.length === 0 && (
-              <p className="p-2 opacity-70">
+              <p className="p-2 text-bf-muted">
                 Nobody on the track yet — use Add Player or Add Enemy Group to
                 begin.
               </p>
@@ -184,12 +189,12 @@ function TrackCard({
       ref={setNodeRef}
       data-track-item={id}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={`m-1.5 flex min-h-[70px] max-w-[160px] flex-1 basis-[160px] rounded-[10px] border ${
-        isEnemy ? "border-bf-pink-edge" : "border-bf-green"
+      className={`m-1.5 flex min-h-[70px] max-w-[160px] flex-1 basis-[160px] rounded border ${
+        isEnemy ? "border-bf-pink-edge" : "border-bf-cyan/50"
       } ${isDragging ? "z-10 opacity-90 ring-2 ring-bf-cyan" : ""}`}
     >
       <div
-        className={`m-1.5 flex min-w-0 flex-1 flex-col rounded-[10px] ${
+        className={`m-1.5 flex min-w-0 flex-1 flex-col rounded ${
           isEnemy ? "bf-gradient-enemy" : "bf-gradient-blue"
         } ${isDragging ? "bg-[#449498] bg-none" : ""}`}
       >
@@ -226,7 +231,7 @@ function TrackCard({
           </button>
         </div>
 
-        <h4 className="px-1.5 pt-0.5 text-sm leading-tight wrap-anywhere text-white">
+        <h4 className="px-1.5 pt-0.5 font-cond text-sm leading-tight wrap-anywhere text-bf-bright">
           {label}
         </h4>
 
@@ -241,7 +246,7 @@ function TrackCard({
                 {getEnemy(member.enemyId).name}
               </span>
             ))}
-            <span className="mt-auto inline-flex items-center gap-0.5 pt-1 text-[0.7rem] text-bf-cyan">
+            <span className="mt-auto inline-flex items-center gap-0.5 pt-1 font-cond text-[0.65rem] tracking-wide uppercase text-bf-cyan">
               Roll behaviour
               <ChevronIcon />
             </span>

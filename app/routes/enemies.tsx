@@ -66,11 +66,11 @@ export default function Enemies() {
 
   return (
     <div className="w-full">
-      <div className="mb-3 flex flex-wrap items-baseline gap-4">
-        <h1 className="text-xl text-white">Behaviour charts</h1>
+      <div className="mb-3 flex flex-wrap items-baseline gap-4 border-b border-bf-edge pb-2">
+        <h1 className="text-2xl text-bf-bright">Behaviour charts</h1>
         <Link
           to="/"
-          className="text-sm text-white/70 underline decoration-white/30 transition hover:text-white hover:decoration-white"
+          className="font-cond text-sm tracking-wide uppercase text-bf-muted underline decoration-bf-edge transition hover:text-bf-cyan hover:decoration-bf-cyan"
         >
           Back to the arena
         </Link>
@@ -83,11 +83,11 @@ export default function Enemies() {
               ref={doneRef}
               type="button"
               onClick={close}
-              className="rounded-[10px] border border-white/20 px-5 py-2 text-sm text-white/80 transition hover:border-white/40 hover:text-white"
+              className="rounded border px-4 py-2 font-cond text-sm tracking-wide uppercase transition focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none border-bf-edge bg-bf-slate text-bf-bright hover:border-bf-cyan hover:text-bf-cyan"
             >
               Done
             </button>
-            <p className="text-sm opacity-80">
+            <p className="text-sm text-bf-muted">
               Pick the situation this hostile is in to roll its behaviour chart.
             </p>
           </div>
@@ -103,13 +103,13 @@ export default function Enemies() {
         </div>
       ) : (
         <>
-          <p className="mb-3 text-sm opacity-80">
+          <p className="mb-3 text-sm text-bf-muted">
             Pick a hostile to roll its behaviour chart without adding it to a group.
           </p>
 
           <ul
             ref={listRef}
-            className="max-w-2xl overflow-hidden rounded-[10px] border border-white/15"
+            className="max-w-2xl overflow-hidden rounded border border-bf-edge bg-bf-slate"
           >
             {enemies.map((item, index) => (
               <li key={item.id}>
@@ -117,12 +117,12 @@ export default function Enemies() {
                   type="button"
                   data-enemy-row={item.id}
                   onClick={() => open(item.id)}
-                  className={`flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left transition hover:bg-white/10 focus-visible:bg-white/10 focus-visible:outline-none ${
-                    index > 0 ? "border-t border-white/10" : ""
+                  className={`flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left transition hover:bg-bf-cyan/8 focus-visible:bg-bf-cyan/8 focus-visible:outline-none ${
+                    index > 0 ? "border-t border-bf-edge" : ""
                   }`}
                 >
-                  <span className="flex-1 text-white">{item.name}</span>
-                  <span className="text-xs text-white/50">
+                  <span className="flex-1 font-cond text-bf-bright">{item.name}</span>
+                  <span className="text-xs text-bf-muted">
                     {item.columns.length} situations
                   </span>
                   <span className="text-bf-cyan">

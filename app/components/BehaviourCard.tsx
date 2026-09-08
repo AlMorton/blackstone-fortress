@@ -33,45 +33,63 @@ export function BehaviourCard({
   const description = describeAction(status, enemy.id);
 
   return (
-    <article className={`bf-gradient-blue relative rounded text-bf-card ${className}`}>
-      <div className="p-4">
-        <h2 className={`text-xl md:text-2xl ${onRemove ? "pr-8" : ""}`}>
-          {enemy.name}
-        </h2>
+    <article
+      className={`overflow-hidden rounded border border-bf-edge bg-bf-slate ${className}`}
+    >
+      {/* Head strip mirrors the printed twist card: eyebrow, hairline, title. */}
+      <div className="bf-gradient-head border-b border-bf-edge px-4 pt-2.5 pb-3">
+        <div className="flex items-start justify-between gap-2 border-b border-white/15 pb-1.5">
+          <span className="bf-eyebrow text-bf-kicker">Hostile</span>
 
-        {onRemove && (
-          <button
-            type="button"
-            onClick={onRemove}
-            aria-label={`Remove ${enemy.name} from this group`}
-            title={`Remove ${enemy.name} from this group`}
-            className="absolute top-2 right-2 rounded p-1 text-white/60 transition hover:bg-black/30 hover:text-white"
-          >
-            <TrashIcon />
-          </button>
-        )}
-
-        <div className="mt-2 flex flex-wrap gap-1">
-          {enemy.columns.map((column) => (
+          {onRemove && (
             <button
-              key={column.status}
               type="button"
-              onClick={() => onRoll(column.status)}
-              aria-pressed={columnStatus === column.status}
-              className={`rounded bg-bf-btn px-3 py-1.5 text-sm text-white transition hover:brightness-125 ${
-                columnStatus === column.status ? "ring-1 ring-bf-cyan" : ""
-              }`}
+              onClick={onRemove}
+              aria-label={`Remove ${enemy.name} from this group`}
+              title={`Remove ${enemy.name} from this group`}
+              className="-mt-1 -mr-1 rounded p-1 text-white/60 transition hover:bg-black/30 hover:text-white focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none"
             >
-              {column.status}
+              <TrashIcon />
             </button>
-          ))}
+          )}
         </div>
 
-        <div className="flex items-baseline justify-between pt-4">
-          <h4 className="text-base md:text-lg" aria-live="polite">
-            Dice roll: {roll ?? 0}
-          </h4>
-          <h4 className="text-base text-bf-cyan md:text-lg">{status ?? ""}</h4>
+        <h2 className="pt-1.5 text-xl text-bf-cyan md:text-2xl">{enemy.name}</h2>
+      </div>
+
+      <div className="flex flex-col gap-3 p-4">
+        <div>
+          <p className="bf-eyebrow mb-1.5 text-bf-muted">Situation</p>
+
+          <div className="flex flex-wrap gap-1.5">
+            {enemy.columns.map((column) => {
+              const active = columnStatus === column.status;
+              return (
+                <button
+                  key={column.status}
+                  type="button"
+                  onClick={() => onRoll(column.status)}
+                  aria-pressed={active}
+                  className={`rounded-full border px-3 py-1 font-cond text-xs tracking-wider uppercase transition focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none ${
+                    active
+                      ? "border-bf-cyan bg-bf-cyan/10 text-bf-cyan"
+                      : "border-bf-edge text-bf-text hover:border-bf-cyan hover:text-bf-bright"
+                  }`}
+                >
+                  {column.status}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="flex items-baseline justify-between gap-3 border-t border-bf-edge pt-3">
+          <p className="bf-eyebrow text-bf-muted" aria-live="polite">
+            Roll <span className="ml-1 font-body text-sm tabular-nums text-bf-bright">{roll ?? "—"}</span>
+          </p>
+          <p className="font-cond text-lg leading-tight text-bf-cyan md:text-xl">
+            {status ?? ""}
+          </p>
         </div>
 
         {status && (
@@ -79,17 +97,15 @@ export function BehaviourCard({
             type="button"
             onClick={() => setCollapsed((value) => !value)}
             aria-expanded={!collapsed}
-            className={`mt-2 w-full rounded-[10px] border border-bf-green bg-bf-panel p-4 text-left ${
+            className={`rounded border border-bf-edge bg-bf-slate-2 p-3 text-left text-sm transition hover:border-bf-cyan/50 focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none ${
               collapsed ? "h-12 overflow-hidden" : "h-auto"
             }`}
           >
-            <p>
-              {description ? (
-                <RulesText text={description} />
-              ) : (
-                <span className="italic opacity-70">No rules text found.</span>
-              )}
-            </p>
+            {description ? (
+              <RulesText text={description} />
+            ) : (
+              <span className="text-bf-muted italic">No rules text found.</span>
+            )}
           </button>
         )}
       </div>

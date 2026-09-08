@@ -19,7 +19,7 @@ export function AdventurerPicker({
       hint="Click an explorer to put them on the initiative track. Click again to remove."
       onClose={onClose}
     >
-      <div className="flex flex-wrap gap-1">
+      <div className="flex flex-wrap gap-1.5">
         {ADVENTURERS.map((name) => {
           const selected = isOnTrack(name);
           return (
@@ -28,10 +28,8 @@ export function AdventurerPicker({
               type="button"
               onClick={() => toggleAdventurer(name)}
               aria-pressed={selected}
-              className={`min-w-10 rounded-[50px] px-3 py-1.5 text-sm transition ${
-                selected
-                  ? "bf-gradient-selected text-white ring-2 ring-bf-cyan"
-                  : "bg-black/35 text-white/70 hover:bg-black/50 hover:text-white"
+              className={`rounded-full border px-3 py-1 font-cond text-xs tracking-wider uppercase transition focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none ${
+                selected ? "border-bf-cyan bg-bf-cyan/10 text-bf-cyan" : "border-bf-edge text-bf-text hover:border-bf-cyan hover:text-bf-bright"
               }`}
             >
               <span aria-hidden="true" className="mr-1.5 opacity-90">

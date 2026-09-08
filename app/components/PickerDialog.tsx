@@ -43,23 +43,24 @@ export function PickerDialog({
       aria-labelledby={titleId}
       className="m-auto w-[min(42rem,92vw)] rounded bg-transparent p-0 backdrop:bg-black/60"
     >
-      <div className="bf-gradient-modal rounded text-bf-card">
-        <header className="border-b border-white/20 px-4 py-3">
-          <h2 id={titleId} className="text-lg text-white">
+      <div className="overflow-hidden rounded border border-bf-edge bg-bf-slate text-bf-text">
+        <header className="bf-gradient-head border-b border-bf-edge px-4 pt-2.5 pb-3">
+          <p className="bf-eyebrow text-bf-kicker">Arena</p>
+          <h2 id={titleId} className="pt-1 text-xl text-bf-cyan">
             {title}
           </h2>
         </header>
 
         <div className="max-h-[70vh] overflow-y-auto p-4">
-          {hint && <p className="mb-3 text-sm opacity-80">{hint}</p>}
+          {hint && <p className="mb-3 text-sm text-bf-muted">{hint}</p>}
           {children}
         </div>
 
-        <footer className="flex justify-end border-t border-white/20 px-4 py-3">
+        <footer className="flex justify-end border-t border-bf-edge px-4 py-3">
           <button
             type="button"
             onClick={onClose}
-            className="rounded bg-bf-btn px-5 py-2 text-white hover:brightness-125"
+            className="rounded border px-4 py-2 font-cond text-sm tracking-wide uppercase transition focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none border-bf-edge bg-bf-slate-2 text-bf-bright hover:border-bf-cyan hover:text-bf-cyan"
           >
             OK
           </button>

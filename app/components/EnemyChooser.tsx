@@ -10,7 +10,7 @@ export function EnemyChooser({ group }: { group: number }) {
   const members = state.groups[group]?.members ?? [];
 
   return (
-    <div className="flex flex-wrap gap-1">
+    <div className="flex flex-wrap gap-1.5">
       {enemies.map((enemy) => {
         const count = members.filter((member) => member.enemyId === enemy.id).length;
         return (
@@ -18,10 +18,10 @@ export function EnemyChooser({ group }: { group: number }) {
             <button
               type="button"
               onClick={() => addEnemy(group, enemy.id)}
-              className={`min-w-10 rounded px-3 py-1.5 text-sm text-white transition ${
+              className={`rounded-full border px-3 py-1 font-cond text-xs tracking-wider uppercase transition focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none ${
                 count > 0
-                  ? "bf-gradient-enemy border border-[#dc3545]"
-                  : "border border-white/15 bg-[#0e2739]/85 hover:bg-[#16405c]/90"
+                  ? "border-bf-pink-edge bg-bf-pink/20 text-bf-bright"
+                  : "border-bf-edge text-bf-text hover:border-bf-cyan hover:text-bf-bright"
               }`}
             >
               {enemy.name}
@@ -36,7 +36,7 @@ export function EnemyChooser({ group }: { group: number }) {
                   if (last) removeInstance(group, last.instanceId);
                 }}
                 aria-label={`Remove one ${enemy.name}`}
-                className="ml-0.5 rounded border border-white/15 bg-[#0e2739]/85 px-2 py-1.5 text-sm text-white hover:bg-[#16405c]/90"
+                className="ml-0.5 flex h-6 w-6 items-center justify-center rounded-full border border-bf-edge text-base leading-none text-bf-text transition hover:border-bf-cyan hover:text-bf-cyan focus-visible:ring-2 focus-visible:ring-bf-cyan focus-visible:outline-none"
               >
                 −
               </button>
