@@ -13,3 +13,7 @@ blob-report/
 # Card scans — local reference only, not redistributed
 blackstone.zip
 scans/
+document.pdf
+
+# Generated print output — regenerate with print/build-print-sheets.py
+print/*.pdf

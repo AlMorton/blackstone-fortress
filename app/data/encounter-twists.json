@@ -1,0 +1,537 @@
+{
+  "source": "Warhammer Quest: Blackstone Fortress — Abominable Intellect encounter cards",
+  "note": "Tier-4 twists transcribed verbatim from card scans. Inline dice glyphs use the same {name} token convention as enemy-actions.json; {d8} and {d12} have no renderer yet.",
+  "twists": [
+    {
+      "id": "exhausted",
+      "twist": "Exhausted",
+      "card": "Traitor Guardsmen",
+      "sheet": 1,
+      "affects": "activation",
+      "tiers": ["21 Traitor Guardsmen", "16 Traitor Guardsmen", "14 Traitor Guardsmen"],
+      "text": "In this combat, each player can only choose to keep a maximum of three activation dice after making an activation roll – discard any other available activation dice."
+    },
+    {
+      "id": "slow-start",
+      "twist": "Slow Start",
+      "card": "Traitor Guardsmen",
+      "sheet": 1,
+      "affects": "setup",
+      "tiers": [
+        "2 Rogue Psykers, 7 Traitor Guardsmen",
+        "2 Rogue Psykers, 5 Traitor Guardsmen",
+        "1 Rogue Psykers, 7 Traitor Guardsmen"
+      ],
+      "text": "Explorers are no longer inspired – flip their character card. Each Explorer loses their inspiration points."
+    },
+    {
+      "id": "blase",
+      "twist": "Blasé",
+      "card": "Ur-Ghuls",
+      "sheet": 1,
+      "affects": "inspiration",
+      "tiers": [
+        "4 Chaos Beastmen, 4 Ur-Ghuls",
+        "3 Chaos Beastmen, 4 Ur-Ghuls",
+        "3 Chaos Beastmen, 3 Ur-Ghuls"
+      ],
+      "text": "When making an inspiration roll in this combat, that roll must be equal to or less than the highest Wounds value of a single hostile slain by that explorer during their activation, instead of the total combined Wounds value."
+    },
+    {
+      "id": "unprepared",
+      "twist": "Unprepared",
+      "card": "Rogue Psykers",
+      "sheet": 1,
+      "affects": "setup",
+      "tiers": [
+        "2 Rogue Psykers, 6 Negavolt Cultists",
+        "2 Rogue Psykers, 5 Negavolt Cultists",
+        "1 Rogue Psyker, 4 Negavolt Cultists"
+      ],
+      "text": "In step 2 of each initiative phase, the hostile initiative cards are shuffled and set up first. Then the explorers' initiative cards are shuffled and set up along the remaining spaces of the combat track."
+    },
+    {
+      "id": "out-of-time",
+      "twist": "Out of Time",
+      "card": "Chaos Space Marines",
+      "sheet": 1,
+      "affects": "activation",
+      "tiers": [
+        "1 Rogue Psyker, 3 Chaos Space Marines",
+        "1 Rogue Psyker, 2 Chaos Space Marines",
+        "1 Rogue Psyker, 2 Chaos Space Marines"
+      ],
+      "text": "To attempt a gambit in this combat, the player who controls the explorer must spend one activation dice with a value of (4+) instead of any activation dice on their character card."
+    },
+    {
+      "id": "electrified-floor-cultists",
+      "twist": "Electrified Floor",
+      "card": "Cultists",
+      "sheet": 1,
+      "affects": "destiny",
+      "tiers": [
+        "2 Cultist Firebrands, 14 Cultists",
+        "2 Cultist Firebrands, 12 Cultists",
+        "1 Cultist Firebrand, 10 Cultists"
+      ],
+      "text": "In this combat, once the destiny roll has been resolved, if there is only 1 available destiny dice, and the value of that dice is 1, each explorer suffers 1 wound."
+    },
+    {
+      "id": "enhanced-weapons-cultists",
+      "twist": "Enhanced Weapons",
+      "card": "Cultists",
+      "sheet": 1,
+      "affects": "explorer-stats",
+      "tiers": [
+        "2 Cultist Firebrands, 5 Cultists",
+        "2 Cultist Firebrands, 5 Cultists",
+        "1 Cultist Firebrand, 5 Cultists"
+      ],
+      "text": "Each explorer has Defence {d6} in this combat."
+    },
+    {
+      "id": "sneak-attacks",
+      "twist": "Sneak Attacks",
+      "card": "Cultists",
+      "sheet": 1,
+      "affects": "reinforcements",
+      "tiers": [
+        "2 Cultist Firebrands, 10 Cultists",
+        "2 Cultist Firebrands, 9 Cultists",
+        "1 Cultist Firebrand, 8 Cultists"
+      ],
+      "text": "In this combat, after the destiny phase, the leader must roll the Blackstone dice; on a 15+ they pick one hostile that was slain during the combat and has not returned to the battlefield, and then deploy them as close to an explorer as possible."
+    },
+    {
+      "id": "soulgraft",
+      "twist": "Soulgraft",
+      "card": "Cultists",
+      "sheet": 2,
+      "affects": "wounds",
+      "tiers": [
+        "2 Cultist Firebrand, 10 Cultists",
+        "2 Cultist Firebrand, 7 Cultists",
+        "2 Cultist Firebrand, 5 Cultists"
+      ],
+      "text": "Each time a hostile is slain in this combat, each other hostile heals 1 wound."
+    },
+    {
+      "id": "enhanced-weapons-ambull",
+      "twist": "Enhanced Weapons",
+      "card": "The Dreaded Ambull",
+      "sheet": 2,
+      "affects": "cover",
+      "tiers": ["1 Ambull, 1 Borewyrm Infestation", "1 Ambull", "1 Borewyrm Infestation"],
+      "text": "Explorers do not receive the benefit of cover in this combat."
+    },
+    {
+      "id": "endless-waves",
+      "twist": "Endless Waves",
+      "card": "Chaos Space Marines",
+      "sheet": 2,
+      "affects": "reinforcements",
+      "tiers": [
+        "3 Chaos Space Marines, 5 Traitor Guardsmen",
+        "3 Chaos Space Marines, 4 Traitor Guardsmen",
+        "3 Chaos Space Marines"
+      ],
+      "text": "In this combat, at the end of the destiny phase, return 1 slain hostile from each hostile group to the battlefield as reinforcements."
+    },
+    {
+      "id": "electrified-floor-ambull",
+      "twist": "Electrified Floor",
+      "card": "The Dreaded Ambull",
+      "sheet": 2,
+      "affects": "destiny",
+      "tiers": ["1 Ambull, 1 Borewyrm Infestation", "1 Ambull", "1 Borewyrm Infestation"],
+      "text": "In this combat, once the destiny roll has been resolved, if there is only 1 available destiny dice, and the value of that dice is 1, each explorer suffers 1 wound."
+    },
+    {
+      "id": "rising-frenzy-ambull",
+      "twist": "Rising Frenzy",
+      "card": "The Dreaded Ambull",
+      "sheet": 2,
+      "affects": "behaviour",
+      "tiers": ["1 Ambull, 1 Borewyrm Infestation", "1 Ambull", "1 Borewyrm Infestation"],
+      "text": "Add 5 to all hostile behaviour rolls in this combat (to a maximum of 20)."
+    },
+    {
+      "id": "hallucinogenic-atmosphere",
+      "twist": "Hallucinogenic Atmosphere",
+      "card": "Traitor Command",
+      "sheet": 2,
+      "affects": "wounds",
+      "tiers": [
+        "1 Traitor Commissar, 14 Traitor Guardsmen",
+        "1 Traitor Commissar, 1 Chaos Ogryn",
+        "1 Traitor Commissar, 5 Traitor Guardsmen"
+      ],
+      "text": "Each time a hostile is slain in this combat, roll the Blackstone dice; on a 20 that model is not slain and all its wounds are healed instead."
+    },
+    {
+      "id": "fearsome-reputation",
+      "twist": "Fearsome Reputation",
+      "card": "Traitor Command",
+      "sheet": 2,
+      "affects": "action-cost",
+      "tiers": [
+        "1 Traitor Commissar, 1 Chaos Ogryn, 7 Traitor Guardsmen",
+        "1 Traitor Commissar, 1 Chaos Ogryn",
+        "1 Traitor Commissar, 7 Traitor Guardsmen"
+      ],
+      "text": "In this combat, the cost of any action is increased by 1 for explorers who are adjacent to one or more hostiles, to a maximum cost of 6+. For example, the cost of a (4+) action would be increased to (5+)."
+    },
+    {
+      "id": "dying-blows",
+      "twist": "Dying Blows",
+      "card": "Spindle Drones",
+      "sheet": 2,
+      "affects": "wounds",
+      "tiers": [
+        "6 Spindle Drones, 6 Ur-Ghuls",
+        "4 Spindle Drones, 4 Ur-Ghuls",
+        "2 Spindle Drones, 4 Ur-Ghuls"
+      ],
+      "text": "Roll the Blackstone dice each time a hostile is slain in this combat, before it is removed from the battlefield; if the result is 18+ one adjacent explorer suffers one wound."
+    },
+    {
+      "id": "eager-for-blood",
+      "twist": "Eager for Blood",
+      "card": "Traitor Guardsmen",
+      "sheet": 3,
+      "affects": "behaviour",
+      "tiers": [
+        "7 Traitor Guardsmen, 3 Chaos Beastmen, 2 Chaos Space Marines",
+        "7 Traitor Guardsmen, 2 Chaos Beastmen, 2 Chaos Space Marines",
+        "5 Traitor Guardsmen, 2 Chaos Beastmen, 2 Chaos Space Marines"
+      ],
+      "text": "In this combat, replace any 'hold' results on behaviour tables with 'advance'."
+    },
+    {
+      "id": "uneven-footing",
+      "twist": "Uneven Footing",
+      "card": "Spindle Drones",
+      "sheet": 3,
+      "affects": "explorer-stats",
+      "tiers": [
+        "6 Spindle Drones, 4 Traitor Guardsmen, 1 Chaos Space Marine",
+        "4 Spindle Drones, 2 Traitor Guardsmen, 1 Chaos Space Marine",
+        "2 Spindle Drones, 2 Traitor Guardsmen, 1 Chaos Space Marine"
+      ],
+      "text": "In this combat, explorers with Agility {d12} have Agility {d8}, and explorers with Agility {d8} have Agility {d6}."
+    },
+    {
+      "id": "overconfident",
+      "twist": "Overconfident",
+      "card": "Spindle Drones",
+      "sheet": 3,
+      "affects": "activation",
+      "tiers": [
+        "6 Spindle Drones, 6 Negavolt Cultists",
+        "4 Spindle Drones, 4 Negavolt Cultists",
+        "3 Spindle Drones, 3 Negavolt Cultists"
+      ],
+      "text": "If an explorer has no wound or grievous wound counters on their character card, they must choose one of their activation dice after making an activation roll in this combat. Change the value of that activation dice to 1."
+    },
+    {
+      "id": "missed-opportunities",
+      "twist": "Missed Opportunities",
+      "card": "Spindle Drones",
+      "sheet": 3,
+      "affects": "inspiration",
+      "tiers": [
+        "6 Chaos Beastmen, 4 Spindle Drones",
+        "4 Chaos Beastmen, 3 Spindle Drones",
+        "4 Chaos Beastmen, 2 Spindle Drones"
+      ],
+      "text": "Inspiration points cannot be spent to re-roll action dice in this combat."
+    },
+    {
+      "id": "maglev-delays",
+      "twist": "Maglev Delays",
+      "card": "Ur-Ghuls",
+      "sheet": 3,
+      "affects": "action-cost",
+      "tiers": [
+        "6 Ur-Ghuls, 4 Spindle Drones",
+        "4 Ur-Ghuls, 4 Spindle Drones",
+        "4 Ur-Ghuls, 2 Spindle Drones"
+      ],
+      "text": "Treat the Summon (4+) action as Summon (6+) in this combat."
+    },
+    {
+      "id": "warp-fuelled-burst",
+      "twist": "Warp-fuelled Burst",
+      "card": "Obsidius Mallex",
+      "sheet": 3,
+      "affects": "behaviour",
+      "tiers": [
+        "Obsidius Mallex, 2 Chaos Space Marines, 2 Rogue Psykers",
+        "Obsidius Mallex, 1 Chaos Space Marine, 2 Rogue Psykers",
+        "Obsidius Mallex, 2 Chaos Space Marines, 1 Rogue Psyker"
+      ],
+      "text": "In this combat, roll twice on the behaviour table for the first hostile to be activated each turn."
+    },
+    {
+      "id": "greed-of-slaanesh",
+      "twist": "Greed of Slaanesh",
+      "card": "Traitor Guardsmen",
+      "sheet": 3,
+      "affects": "destiny",
+      "tiers": [
+        "6 Ur-Ghuls, 7 Traitor Guardsmen",
+        "4 Ur-Ghuls, 7 Traitor Guardsmen",
+        "2 Ur-Ghuls, 4 Traitor Guardsmen"
+      ],
+      "text": "In this combat, after the destiny roll has been made, discard all results of 6."
+    },
+    {
+      "id": "tzeentchs-meddling",
+      "twist": "Tzeentch's Meddling",
+      "card": "Traitor Guardsmen",
+      "sheet": 3,
+      "affects": "destiny",
+      "tiers": [
+        "7 Traitor Guardsmen, 4 Spindle Drones, 4 Chaos Beastmen",
+        "7 Traitor Guardsmen, 3 Spindle Drones, 3 Chaos Beastmen",
+        "7 Traitor Guardsmen, 2 Spindle Drones, 2 Chaos Beastmen"
+      ],
+      "text": "In this combat, once the destiny roll has been made, if the available destiny dice add up to 9, discard them all."
+    },
+    {
+      "id": "nurgles-generosity",
+      "twist": "Nurgle's Generosity",
+      "card": "Traitor Guardsmen",
+      "sheet": 3,
+      "affects": "wounds",
+      "tiers": [
+        "4 Negavolt Cultists, 4 Spindle Drones, 7 Traitor Guardsmen",
+        "2 Negavolt Cultists, 2 Spindle Drones, 7 Traitor Guardsmen",
+        "1 Negavolt Cultist, 1 Spindle Drone, 7 Traitor Guardsmen"
+      ],
+      "text": "In this combat, if an explorer begins their activation adjacent to one or more hostiles, roll the Blackstone dice; on a 15+ that explorer suffers 1 wound."
+    },
+    {
+      "id": "bleeding-out",
+      "twist": "Bleeding Out",
+      "card": "Negavolt Cultists",
+      "sheet": 4,
+      "affects": "action-cost",
+      "tiers": [
+        "2 Negavolt Cultists, 2 Chaos Space Marines, 3 Chaos Beastmen",
+        "2 Negavolt Cultists, 2 Chaos Space Marines, 3 Chaos Beastmen",
+        "1 Negavolt Cultist, 1 Chaos Space Marine, 2 Chaos Beastmen"
+      ],
+      "text": "Treat the Recuperate (1+) action as Recuperate (4+) in this combat."
+    },
+    {
+      "id": "khornes-bloodlust",
+      "twist": "Khorne's Bloodlust",
+      "card": "Traitor Guardsmen",
+      "sheet": 4,
+      "affects": "wounds",
+      "tiers": [
+        "2 Negavolt Cultists, 2 Chaos Beastmen, 3 Traitor Guardsmen",
+        "1 Negavolt Cultist, 3 Chaos Beastmen, 3 Traitor Guardsmen",
+        "2 Negavolt Cultists, 3 Traitor Guardsmen"
+      ],
+      "text": "Roll the Blackstone dice each time a hostile or explorer suffers 1 wound during an attack in this combat; on a 15+ that hostile or explorer suffers another wound."
+    },
+    {
+      "id": "a-cruel-twist",
+      "twist": "A Cruel Twist",
+      "card": "Negavolt Cultists",
+      "sheet": 4,
+      "affects": "destiny",
+      "tiers": [
+        "4 Negavolt Cultists, 4 Chaos Beastmen",
+        "4 Negavolt Cultists, 4 Chaos Beastmen",
+        "2 Negavolt Cultists, 2 Chaos Beastmen"
+      ],
+      "text": "In this combat, change the value of any destiny dice placed in the available destiny dice space of the Precipice board to 1 (these are not discarded)."
+    },
+    {
+      "id": "interesting-times",
+      "twist": "Interesting Times",
+      "card": "Chaos Beastmen",
+      "sheet": 4,
+      "affects": "events",
+      "tiers": [
+        "4 Chaos Beastmen, 5 Traitor Guardsmen",
+        "4 Chaos Beastmen, 4 Traitor Guardsmen",
+        "3 Chaos Beastmen, 3 Traitor Guardsmen"
+      ],
+      "text": "Subtract 5 from event rolls in this combat (to a minimum of 1)."
+    },
+    {
+      "id": "destiny-thwarted",
+      "twist": "Destiny Thwarted",
+      "card": "Rogue Psykers",
+      "sheet": 4,
+      "affects": "destiny",
+      "tiers": [
+        "2 Rogue Psykers, 4 Spindle Drones",
+        "2 Rogue Psykers, 2 Spindle Drones",
+        "1 Rogue Psyker, 2 Spindle Drones"
+      ],
+      "text": "In this combat all destiny dice are discarded."
+    },
+    {
+      "id": "low-lighting",
+      "twist": "Low Lighting",
+      "card": "Rogue Psykers",
+      "sheet": 4,
+      "affects": "action-cost",
+      "tiers": [
+        "3 Rogue Psykers, 3 Chaos Space Marines, 4 Ur-Ghuls",
+        "2 Rogue Psykers, 2 Chaos Space Marines, 4 Ur-Ghuls",
+        "1 Rogue Psyker, 1 Chaos Space Marine, 4 Ur-Ghuls"
+      ],
+      "text": "In this combat, add 1 to the cost of all weapon actions that target a hostile at Range 2 or more, to a maximum cost of 6+. For example, the cost of a (4+) weapon action would be increased to (5+)."
+    },
+    {
+      "id": "horrifying-regeneration",
+      "twist": "Horrifying Regeneration",
+      "card": "Traitor Guardsmen",
+      "sheet": 4,
+      "affects": "wounds",
+      "tiers": [
+        "5 Traitor Guardsmen, 4 Negavolt Cultists",
+        "4 Traitor Guardsmen, 4 Negavolt Cultists",
+        "3 Traitor Guardsmen, 4 Negavolt Cultists"
+      ],
+      "text": "Remove one wound counter from each hostile after the destiny phase in this combat."
+    },
+    {
+      "id": "unlucky",
+      "twist": "Unlucky",
+      "card": "Chaos Beastmen",
+      "sheet": 4,
+      "affects": "wounds",
+      "tiers": [
+        "4 Chaos Beastmen, 7 Traitor Guardsmen",
+        "4 Chaos Beastmen, 5 Traitor Guardsmen",
+        "4 Chaos Beastmen, 4 Traitor Guardsmen"
+      ],
+      "text": "Each explorer suffers 1 wound. If this would take an explorer out of action, instead that explorer does not suffer 1 wound."
+    },
+    {
+      "id": "frenzied-onslaught",
+      "twist": "Frenzied Onslaught",
+      "card": "Negavolt Cultists",
+      "sheet": 4,
+      "affects": "hostile-attacks",
+      "tiers": [
+        "6 Spindle Drones, 4 Negavolt Cultists",
+        "4 Spindle Drones, 4 Negavolt Cultists",
+        "4 Spindle Drones, 2 Negavolt Cultists"
+      ],
+      "text": "In the combat, re-roll one action dice that resulted in a failure for each hostile attack action if the attacking hostile is adjacent to the target."
+    },
+    {
+      "id": "wave-after-wave",
+      "twist": "Wave after Wave",
+      "card": "Obsidius Mallex",
+      "sheet": 5,
+      "affects": "reinforcements",
+      "tiers": [
+        "Obsidius Mallex, 3 Rogue Psykers, 3 Chaos Space Marines",
+        "Obsidius Mallex, 3 Rogue Psykers",
+        "Obsidius Mallex, 3 Chaos Space Marines"
+      ],
+      "text": "Subtract 10 from all reinforcement rolls in this combat (to a minimum of 1)."
+    },
+    {
+      "id": "rising-frenzy-negavolt",
+      "twist": "Rising Frenzy",
+      "card": "Negavolt Cultists",
+      "sheet": 5,
+      "affects": "behaviour",
+      "tiers": ["6 Negavolt Cultists", "5 Negavolt Cultists", "4 Negavolt Cultists"],
+      "text": "When making behaviour rolls for hostiles in this combat, add 3 to the result on the Blackstone dice (to a maximum of 20)."
+    },
+    {
+      "id": "panicked-shots",
+      "twist": "Panicked Shots",
+      "card": "Ur-Ghuls",
+      "sheet": 5,
+      "affects": "action-cost",
+      "tiers": ["6 Ur-Ghuls", "5 Ur-Ghuls", "4 Ur-Ghuls"],
+      "text": "Treat the Aiming (1+) action as Aiming (4+) in this combat."
+    },
+    {
+      "id": "dulled-reflexes",
+      "twist": "Dulled Reflexes",
+      "card": "Rogue Psykers",
+      "sheet": 5,
+      "affects": "explorer-stats",
+      "tiers": ["3 Rogue Psykers", "3 Rogue Psykers", "2 Rogue Psykers"],
+      "text": "Reduce the value of overwatch dice by 2 instead of 1 in this combat (first remove any dice with a score of 1 or 2)."
+    },
+    {
+      "id": "catastrophically-bad-luck",
+      "twist": "Catastrophically Bad Luck",
+      "card": "Chaos Space Marines",
+      "sheet": 5,
+      "affects": "meta",
+      "tiers": [
+        "3 Rogue Psykers, 3 Chaos Space Marines, 4 Traitor Guardsmen",
+        "2 Rogue Psykers, 2 Chaos Space Marines, 3 Traitor Guardsmen",
+        "1 Rogue Psyker, 1 Chaos Space Marine, 3 Traitor Guardsmen"
+      ],
+      "text": "Draw two Abominable Intellect encounter cards and apply the twists from each."
+    },
+    {
+      "id": "inescapable-blows",
+      "twist": "Inescapable Blows",
+      "card": "Ur-Ghuls",
+      "sheet": 5,
+      "affects": "explorer-stats",
+      "tiers": [
+        "4 Negavolt Cultists, 4 Ur-Ghuls",
+        "4 Negavolt Cultists, 4 Ur-Ghuls",
+        "4 Negavolt Cultists, 4 Ur-Ghuls"
+      ],
+      "text": "Treat critical successes as successes in defence rolls for explorers in this combat."
+    },
+    {
+      "id": "flush-them-out",
+      "twist": "Flush them Out",
+      "card": "Chaos Space Marines",
+      "sheet": 5,
+      "affects": "cover",
+      "tiers": [
+        "3 Chaos Space Marines, 4 Traitor Guardsmen, 1 Ur-Ghul",
+        "2 Chaos Space Marines, 4 Traitor Guardsmen, 1 Ur-Ghul",
+        "1 Chaos Space Marines, 7 Traitor Guardsmen, 1 Ur-Ghul"
+      ],
+      "text": "Explorers do not receive the benefit of cover in this combat."
+    },
+    {
+      "id": "communications-error",
+      "twist": "Communications Error",
+      "card": "Chaos Beastmen",
+      "sheet": 5,
+      "affects": "meta",
+      "tiers": [
+        "2 Rogue Psykers, 6 Chaos Beastmen",
+        "2 Rogue Psykers, 5 Chaos Beastmen",
+        "5 Chaos Beastmen"
+      ],
+      "text": "When an explorer uses an ability on a spacecraft in this combat, roll the Blackstone dice; on a 10+ that ability has no effect."
+    },
+    {
+      "id": "fatal-misstep",
+      "twist": "Fatal Misstep",
+      "card": "Chaos Beastmen",
+      "sheet": 5,
+      "affects": "activation",
+      "tiers": [
+        "1 Chaos Space Marine, 6 Traitor Guardsmen, 4 Chaos Beastmen",
+        "1 Chaos Space Marine, 6 Traitor Guardsmen, 4 Chaos Beastmen",
+        "1 Chaos Space Marine, 6 Traitor Guardsmen, 4 Chaos Beastmen"
+      ],
+      "text": "After making their activation roll, one activation dice with a value of 1 must be discarded in this combat by each explorer."
+    }
+  ]
+}
